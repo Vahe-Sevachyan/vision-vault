@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import HeadSection from "./components/HeaderSection.vue";
+</script>
 
-<template></template>
+<template>
+  <HeadSection />
+</template>
 
 <style scoped></style>
