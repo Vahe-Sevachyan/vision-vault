@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <header>
-        <h1>Notes</h1>
+        <h1>Vision Vault</h1>
         <button>+</button>
       </header>
       <div class="cards-container">
@@ -15,4 +15,35 @@
   </main>
 </template>
 <script setup></script>
-<style></style>
+<style scoped>
+main {
+  height: 100vh;
+  width: 100vw;
+}
+.container {
+  max-width: 1000px;
+  padding: 10px;
+  margin: 0 auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1 {
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 35px;
+}
+button {
+  border: none;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-size: 25px;
+}
+</style>
