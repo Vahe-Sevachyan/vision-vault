@@ -1,10 +1,43 @@
+<script setup>
+import { ref } from "vue";
+const showModal = ref(false);
+const newNote = ref("");
+const notes = ref([]);
+function toggleModal() {
+  showModal.value = true;
+}
+function closeModal() {
+  showModal.value = false;
+}
+
+function getRandomColor() {
+  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+}
+const addNote = () => {
+  notes.value.push({
+    id: Math.floor(Math.random() * 9999999999),
+    text: newNote.value,
+    date: new Date(),
+    backgroundColor: getRandomColor(),
+  });
+  showModal.value = false;
+};
+</script>
+
 <template>
   <main>
     <div v-if="showModal" class="overlay">
       <div class="modal">
-        <textarea name="note" id="note" cols="30" rows="10"></textarea>
-        <button>Add Note</button>
-        <button id="close" v-on:click="closeModal">Close</button>
+        <textarea
+          v-model="newNote"
+          name="note"
+          id="note"
+          cols="30"
+          rows="10"
+          placeholder="Enter note..."
+        ></textarea>
+        <button v-on:click="addNote()">Add Note</button>
+        <button id="close" v-on:click="closeModal()">Close</button>
       </div>
     </div>
     <div class="container">
@@ -27,20 +60,14 @@
           </p>
           <p class="date">02/22/2022</p>
         </div>
+        <div class="card">
+          {{ notes }}
+        </div>
       </div>
     </div>
   </main>
 </template>
-<script setup>
-import { ref } from "vue";
-const showModal = ref(false);
-function toggleModal() {
-  showModal.value = true;
-}
-function closeModal() {
-  showModal.value = false;
-}
-</script>
+
 <style scoped>
 main {
   height: 100vh;
