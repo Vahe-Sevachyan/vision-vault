@@ -1,16 +1,16 @@
 <template>
   <main>
-    <div class="overlay">
+    <div v-if="showModal" class="overlay">
       <div class="modal">
         <textarea name="note" id="note" cols="30" rows="10"></textarea>
         <button>Add Note</button>
-        <button id="close">Close</button>
+        <button id="close" v-on:click="closeModal">Close</button>
       </div>
     </div>
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
-        <button>+</button>
+        <button v-on:click="toggleModal()">+</button>
       </header>
       <div class="cards-container">
         <div class="card">
@@ -31,7 +31,16 @@
     </div>
   </main>
 </template>
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+const showModal = ref(false);
+function toggleModal() {
+  showModal.value = true;
+}
+function closeModal() {
+  showModal.value = false;
+}
+</script>
 <style scoped>
 main {
   height: 100vh;
@@ -112,6 +121,6 @@ header button {
   margin-top: 15px;
 }
 #close {
-  background-color: red;
+  background-color: rgb(197, 14, 14);
 }
 </style>
