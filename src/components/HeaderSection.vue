@@ -7,8 +7,11 @@
       </header>
       <div class="cards-container">
         <div class="card">
-          <p class="main-text"></p>
-          <p class="date"></p>
+          <p class="main-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure porro
+            fuga explicabo, officia incidunt qui?
+          </p>
+          <p class="date">02/22/2022</p>
         </div>
       </div>
     </div>
@@ -45,5 +48,16 @@ button {
   color: white;
   border-radius: 50%;
   font-size: 25px;
+}
+.card {
+  width: 225px;
+  height: 225px;
+  background-color: orange;
+  padding: 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 </style>
