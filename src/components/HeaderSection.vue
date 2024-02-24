@@ -4,6 +4,7 @@
       <div class="modal">
         <textarea name="note" id="note" cols="30" rows="10"></textarea>
         <button>Add Note</button>
+        <button id="close">Close</button>
       </div>
     </div>
     <div class="container">
@@ -109,5 +110,8 @@ header button {
   color: white;
   cursor: pointer;
   margin-top: 15px;
+}
+#close {
+  background-color: red;
 }
 </style>
