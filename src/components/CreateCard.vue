@@ -3,6 +3,7 @@ import { ref } from "vue";
 const showModal = ref(false);
 const newNote = ref("");
 const notes = ref([]);
+const errorMessage = ref("");
 function toggleModal() {
   showModal.value = true;
 }
@@ -14,13 +15,17 @@ function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNote = () => {
+  if (newNote.value.length < 10) {
+    return (errorMessage.value = "Note must be minimum 10 characters or more");
+  }
   notes.value.push({
-    id: Math.floor(Math.random() * 9999999999),
+    id: Math.floor(Math.random() * 10000000),
     text: newNote.value,
     date: new Date(),
     backgroundColor: getRandomColor(),
   });
   showModal.value = false;
+  newNote.value = "";
 };
 </script>
 
@@ -36,6 +41,7 @@ const addNote = () => {
           rows="10"
           placeholder="Enter note..."
         ></textarea>
+        <p v-if="errorMessage">{{ errorMessage }}</p>
         <button v-on:click="addNote()">Add Note</button>
         <button id="close" v-on:click="closeModal()">Close</button>
       </div>
@@ -46,22 +52,14 @@ const addNote = () => {
         <button v-on:click="toggleModal()">+</button>
       </header>
       <div class="cards-container">
-        <div class="card">
-          <p class="main-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure porro
-            fuga explicabo, officia incidunt qui?
-          </p>
-          <p class="date">02/22/2022</p>
-        </div>
-        <div class="card">
-          <p class="main-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure porro
-            fuga explicabo, officia incidunt qui?
-          </p>
-          <p class="date">02/22/2022</p>
-        </div>
-        <div class="card">
-          {{ notes }}
+        <div
+          v-for="note in notes"
+          v-bind:key="note.id"
+          class="card"
+          v-bind:style="{ backgroundColor: note.backgroundColor }"
+        >
+          <p class="main-text">{{ note.text }}</p>
+          <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
         </div>
       </div>
     </div>
@@ -73,8 +71,26 @@ main {
   height: 100vh;
   width: 100vw;
 }
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.77);
+  z-index: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  color: white;
+  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 35px;
+}
+
 .container {
-  max-width: 1000px;
+  max-width: 935px;
   padding: 10px;
   margin: 0 auto;
 }
@@ -83,11 +99,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-h1 {
-  font-weight: bold;
-  margin-bottom: 25px;
-  font-size: 35px;
-}
+
 header button {
   border: none;
   padding: 10px;
@@ -99,35 +111,24 @@ header button {
   border-radius: 50%;
   font-size: 25px;
 }
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+}
 .card {
-  width: 225px;
   height: 225px;
-  background-color: orange;
+  min-width: 200px;
   padding: 10px;
   border-radius: 15px;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin: 0 20px 20px 0;
 }
 .main-text {
   margin-bottom: 110px;
 }
 
-.cards-container {
-  display: flex;
-  flex: wrap;
-}
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.77);
-  z-index: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .modal {
   width: 450px;
   background-color: white;

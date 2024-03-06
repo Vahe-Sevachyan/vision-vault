@@ -1,9 +1,9 @@
 <script setup>
-import HeadSection from "./components/HeaderSection.vue";
+import CreateCard from "./components/CreateCard.vue";
 </script>
 
 <template>
-  <HeadSection />
+  <CreateCard />
 </template>
 
 <style scoped></style>
