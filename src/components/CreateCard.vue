@@ -52,7 +52,7 @@ const addNote = () => {
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
-        <button v-on:click="toggleModal()">+</button>
+        <button v-on:click="toggleModal()">Create Note</button>
       </header>
       <div class="cards-container">
         <div
@@ -97,23 +97,53 @@ h1 {
   padding: 10px;
   margin: 0 auto;
 }
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-header button {
+/* header button {
   border: none;
   padding: 10px;
   width: 50px;
   height: 50px;
   cursor: pointer;
-  background-color: black;
+  background-color: #131730;
   color: white;
-  border-radius: 50%;
+  border-radius: 10%;
   font-size: 25px;
+  text-align: center;
+} */
+
+header button {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+  border: none;
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* box-shadow: 0 0 0px; */
+  border-radius: 10px;
+  display: block;
 }
+
+header button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -147,7 +177,7 @@ header button {
   display: flex;
   flex-direction: column;
 }
-.modal button {
+/* .modal button {
   padding: 10px 20px;
   font-size: 20px;
   width: 100%;
@@ -156,10 +186,65 @@ header button {
   color: white;
   cursor: pointer;
   margin-top: 15px;
+} */
+
+.modal button {
+  background-image: linear-gradient(
+    to right,
+    #24c6dc 0%,
+    #514a9d 51%,
+    #24c6dc 100%
+  );
+  width: 100%;
+  margin-top: 15px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  border: none;
+  display: block;
 }
+
+.modal button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #close {
   background-color: rgb(197, 14, 14);
 }
+
+#close {
+  background-image: linear-gradient(
+    to right,
+    #dc2424 0%,
+    #4a569d 51%,
+    #dc2424 100%
+  );
+  margin-top: 15px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+#close:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 .errorMsg {
   color: tomato;
   font-family: Verdana, Tahoma, sans-serif;
