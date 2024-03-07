@@ -37,7 +37,7 @@ const addNote = () => {
       <div class="modal">
         <p class="modalTitle">New Note</p>
         <textarea
-          v-model="newNote"
+          v-model.trim="newNote"
           name="note"
           id="note"
           cols="30"
@@ -136,6 +136,7 @@ header button {
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
+  font-weight: bold;
 }
 .modal {
   width: 450px;
