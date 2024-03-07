@@ -16,7 +16,8 @@ function getRandomColor() {
 }
 const addNote = () => {
   if (newNote.value.length < 10) {
-    return (errorMessage.value = "Note must be minimum 10 characters or more");
+    return (errorMessage.value =
+      "Note must be minimum of 10 characters or more!");
   }
   notes.value.push({
     id: Math.floor(Math.random() * 10000000),
@@ -26,6 +27,7 @@ const addNote = () => {
   });
   showModal.value = false;
   newNote.value = "";
+  errorMessage.value = "";
 };
 </script>
 
@@ -33,6 +35,7 @@ const addNote = () => {
   <main>
     <div v-if="showModal" class="overlay">
       <div class="modal">
+        <p class="modalTitle">New Note</p>
         <textarea
           v-model="newNote"
           name="note"
@@ -41,7 +44,7 @@ const addNote = () => {
           rows="10"
           placeholder="Enter note..."
         ></textarea>
-        <p v-if="errorMessage">{{ errorMessage }}</p>
+        <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
         <button v-on:click="addNote()">Add Note</button>
         <button id="close" v-on:click="closeModal()">Close</button>
       </div>
@@ -128,7 +131,12 @@ header button {
 .main-text {
   margin-bottom: 110px;
 }
-
+.modalTitle {
+  margin-top: -10px;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+}
 .modal {
   width: 450px;
   background-color: white;
@@ -150,5 +158,9 @@ header button {
 }
 #close {
   background-color: rgb(197, 14, 14);
+}
+.errorMsg {
+  color: tomato;
+  font-family: Verdana, Tahoma, sans-serif;
 }
 </style>
