@@ -61,6 +61,10 @@ const addNote = () => {
           class="card"
           v-bind:style="{ backgroundColor: note.backgroundColor }"
         >
+          <div class="card-title-container">
+            <h3>Card Header</h3>
+            <div class="editBtn-container"><span>X</span><span>Z</span></div>
+          </div>
           <div class="text-container">
             <p class="main-text">{{ note.text }}</p>
           </div>
@@ -73,6 +77,7 @@ const addNote = () => {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&family=Black+Ops+One&family=Kumbh+Sans:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oleo+Script:wght@700&family=Plus+Jakarta+Sans:wght@500;800&family=Poppins:wght@300;400&family=Roboto:wght@400;500&display=swap");
+
 main {
   height: 100vh;
   width: 100vw;
@@ -82,7 +87,6 @@ textarea {
 }
 textarea:focus {
   outline: none;
-  /* box-shadow: none !important; */
   border: 0.2px solid #106de6;
 }
 .overlay {
@@ -147,25 +151,47 @@ header button:hover {
   width: 1000px;
 }
 .card {
-  width: 200px;
-  height: 225px;
-  padding: 8px;
+  width: 220px;
+  height: 245px;
+  padding: 6px;
   border-radius: 15px;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 15px 15px 0;
-  display: flex;
-  word-wrap: break-word;
-  flex: end;
 }
 .text-container {
-  width: 198px;
+  width: 208px;
   height: 223px;
   overflow-y: auto;
   border: 1px solid black;
+  word-wrap: break-word;
+  padding: 0;
+  margin-top: 12px;
+  /* padding-top: none; */
+  /* margin: auto; */
 }
-.main-text {
-  margin-bottom: 110px;
+
+.date {
+  font-family: "Nunito", Verdana, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  /* height: 5px;
+  position: relative;
+  top: -6px; */
+}
+.card-title-container {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  text-align: center;
+  height: 10px;
+}
+.card-title-container span {
+  font-size: 20px;
+}
+.editBtn-container {
+  align-items: center;
 }
 .modalTitle {
   margin-top: -15px;
