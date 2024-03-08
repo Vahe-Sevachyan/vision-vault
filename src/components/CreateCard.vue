@@ -61,7 +61,9 @@ const addNote = () => {
           class="card"
           v-bind:style="{ backgroundColor: note.backgroundColor }"
         >
-          <p class="main-text">{{ note.text }}</p>
+          <div class="text-container">
+            <p class="main-text">{{ note.text }}</p>
+          </div>
           <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
         </div>
       </div>
@@ -70,9 +72,18 @@ const addNote = () => {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&family=Black+Ops+One&family=Kumbh+Sans:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oleo+Script:wght@700&family=Plus+Jakarta+Sans:wght@500;800&family=Poppins:wght@300;400&family=Roboto:wght@400;500&display=swap");
 main {
   height: 100vh;
   width: 100vw;
+}
+textarea {
+  resize: none;
+}
+textarea:focus {
+  outline: none;
+  /* box-shadow: none !important; */
+  border: 0.2px solid #106de6;
 }
 .overlay {
   position: absolute;
@@ -86,12 +97,11 @@ main {
 }
 h1 {
   color: white;
-  font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Nunito", Verdana, sans-serif;
   font-weight: bold;
   margin-bottom: 25px;
   font-size: 35px;
 }
-
 .container {
   max-width: 935px;
   padding: 10px;
@@ -103,19 +113,6 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
-/* header button {
-  border: none;
-  padding: 10px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  background-color: #131730;
-  color: white;
-  border-radius: 10%;
-  font-size: 25px;
-  text-align: center;
-} */
 
 header button {
   background-image: linear-gradient(
@@ -150,43 +147,43 @@ header button:hover {
   width: 1000px;
 }
 .card {
+  width: 200px;
   height: 225px;
-  min-width: 200px;
-  padding: 10px;
+  padding: 8px;
   border-radius: 15px;
   flex-direction: column;
   justify-content: space-between;
-  margin: 0 20px 20px 0;
+  margin: 0 15px 15px 0;
+  display: flex;
+  word-wrap: break-word;
+  flex: end;
+}
+.text-container {
+  width: 198px;
+  height: 223px;
+  overflow-y: auto;
+  border: 1px solid black;
 }
 .main-text {
   margin-bottom: 110px;
 }
 .modalTitle {
-  margin-top: -10px;
+  margin-top: -15px;
+  margin-bottom: 15px;
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 20px;
+  font-family: "Nunito", Verdana, sans-serif;
+  font-size: 25px;
   font-weight: bold;
 }
 .modal {
   width: 450px;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 30px;
   position: relative;
   display: flex;
   flex-direction: column;
 }
-/* .modal button {
-  padding: 10px 20px;
-  font-size: 20px;
-  width: 100%;
-  background-color: blueviolet;
-  border: none;
-  color: white;
-  cursor: pointer;
-  margin-top: 15px;
-} */
 
 .modal button {
   background-image: linear-gradient(
@@ -249,4 +246,26 @@ header button:hover {
   color: tomato;
   font-family: Verdana, Tahoma, sans-serif;
 }
+/* .modal button {
+  padding: 10px 20px;
+  font-size: 20px;
+  width: 100%;
+  background-color: blueviolet;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+} */
+/* header button {
+  border: none;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background-color: #131730;
+  color: white;
+  border-radius: 10%;
+  font-size: 25px;
+  text-align: center;
+} */
 </style>
