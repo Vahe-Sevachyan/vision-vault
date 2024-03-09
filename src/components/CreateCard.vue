@@ -62,8 +62,11 @@ const addNote = () => {
           v-bind:style="{ backgroundColor: note.backgroundColor }"
         >
           <div class="card-title-container">
-            <h3>Card Header</h3>
-            <div class="editBtn-container"><span>X</span><span>Z</span></div>
+            <p>Card Header</p>
+            <ul class="editBtn-container">
+              <li>X</li>
+              <li>Z</li>
+            </ul>
           </div>
           <div class="text-container">
             <p class="main-text">{{ note.text }}</p>
@@ -82,13 +85,12 @@ main {
   height: 100vh;
   width: 100vw;
 }
-textarea {
-  resize: none;
+.container {
+  max-width: 935px;
+  padding: 10px;
+  margin: 0 auto;
 }
-textarea:focus {
-  outline: none;
-  border: 0.2px solid #106de6;
-}
+/* ***MODAL*** */
 .overlay {
   position: absolute;
   width: 100%;
@@ -98,100 +100,6 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-h1 {
-  color: white;
-  font-family: "Nunito", Verdana, sans-serif;
-  font-weight: bold;
-  margin-bottom: 25px;
-  font-size: 35px;
-}
-.container {
-  max-width: 935px;
-  padding: 10px;
-  margin: 0 auto;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header button {
-  background-image: linear-gradient(
-    to right,
-    #1a2980 0%,
-    #26d0ce 51%,
-    #1a2980 100%
-  );
-  border: none;
-  margin: 10px;
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  /* box-shadow: 0 0 0px; */
-  border-radius: 10px;
-  display: block;
-}
-
-header button:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 1000px;
-}
-.card {
-  width: 220px;
-  height: 245px;
-  padding: 6px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0 15px 15px 0;
-}
-.text-container {
-  width: 208px;
-  height: 223px;
-  overflow-y: auto;
-  border: 1px solid black;
-  word-wrap: break-word;
-  padding: 0;
-  margin-top: 12px;
-  /* padding-top: none; */
-  /* margin: auto; */
-}
-
-.date {
-  font-family: "Nunito", Verdana, sans-serif;
-  font-size: 13px;
-  text-align: center;
-  /* height: 5px;
-  position: relative;
-  top: -6px; */
-}
-.card-title-container {
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  text-align: center;
-  height: 10px;
-}
-.card-title-container span {
-  font-size: 20px;
-}
-.editBtn-container {
-  align-items: center;
 }
 .modalTitle {
   margin-top: -15px;
@@ -240,10 +148,6 @@ header button:hover {
 }
 
 #close {
-  background-color: rgb(197, 14, 14);
-}
-
-#close {
   background-image: linear-gradient(
     to right,
     #dc2424 0%,
@@ -272,6 +176,112 @@ header button:hover {
   color: tomato;
   font-family: Verdana, Tahoma, sans-serif;
 }
+
+textarea {
+  resize: none;
+}
+textarea:focus {
+  outline: none;
+  border: 0.2px solid #106de6;
+}
+
+/* ***HEADER SECTION*** */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1 {
+  color: white;
+  font-family: "Nunito", Verdana, sans-serif;
+  font-weight: bold;
+  margin-bottom: 25px;
+  font-size: 35px;
+}
+header button {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+  border: none;
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* box-shadow: 0 0 0px; */
+  border-radius: 10px;
+  display: block;
+}
+
+header button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* ***CARD SECTION*** */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1000px;
+}
+.card {
+  width: 220px;
+  height: 245px;
+  padding: 6px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 15px 15px 0;
+}
+.date {
+  font-family: "Nunito", Verdana, sans-serif;
+  font-size: 13px;
+  text-align: center;
+  /* height: 5px;
+  position: relative;
+  top: -6px; */
+}
+.text-container {
+  width: 208px;
+  height: 223px;
+  overflow-y: auto;
+  border: 1px solid black;
+  word-wrap: break-word;
+  padding: 0;
+  /* margin-top: 7px; */
+  /* padding-top: none; */
+  /* margin: auto; */
+}
+
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+
+  /* height: 30px; */
+  border: 1px solid black;
+}
+.card-title-container p {
+  margin-bottom: 5px;
+}
+.card-title-container span {
+  font-size: 20px;
+}
+.editBtn-container {
+  display: flex;
+
+  width: 40px;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+  list-style: none;
+}
+
 /* .modal button {
   padding: 10px 20px;
   font-size: 20px;
