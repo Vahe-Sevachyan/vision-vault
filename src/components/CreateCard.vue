@@ -29,6 +29,11 @@ const addNote = () => {
   newNote.value = "";
   errorMessage.value = "";
 };
+function deleteCard(index) {
+  if (index !== -1) {
+    notes.value.splice(index, 1);
+  }
+}
 </script>
 
 <template>
@@ -56,7 +61,7 @@ const addNote = () => {
       </header>
       <div class="cards-container">
         <div
-          v-for="note in notes"
+          v-for="(note, index) in notes"
           v-bind:key="note.id"
           class="card"
           v-bind:style="{ backgroundColor: note.backgroundColor }"
@@ -64,7 +69,9 @@ const addNote = () => {
           <div class="card-title-container">
             <p>Card Header</p>
             <ul class="editBtn-container">
-              <li><img src="../assets/edit.svg" alt="" /></li>
+              <li v-on:click="deleteCard(index)">
+                <img src="../assets/edit.svg" alt="" />
+              </li>
               <li><img src="../assets/trash.svg" alt="" /></li>
             </ul>
           </div>
