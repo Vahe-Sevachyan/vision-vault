@@ -1,18 +1,18 @@
 <script setup>
 import { ref } from "vue";
 const showModal = ref(false);
-const notes = ref([]);
 const newNote = ref("");
-const updatedNote = ref("");
-const editNote = ref(false);
+const notes = ref([]);
 const errorMessage = ref("");
+const editNote = ref(false);
+const updatedNote = ref("");
 
 function toggleModal() {
   showModal.value = true;
 }
-// function closeModal() {
-//   showModal.value = false;
-// }
+function closeModal() {
+  showModal.value = false;
+}
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
@@ -36,28 +36,16 @@ function deleteCard(index) {
     notes.value.splice(index, 1);
   }
 }
-function editNoteHandler(index) {
+function editNoteHandler(note) {
   // Open the modal for editing
-  // editNote.value = true;
-  // updatedNote.value = note.text;
-  // xx
-  updatedNote.value = index;
-  if (index !== null) {
-    newNote.value = notes.value[index];
-  } else {
-    newNote.value = "";
-  }
+  editNote.value = true;
+  updatedNote.value = note.text;
 }
 function cancelEdit() {
   // Close the modal without saving changes
-  closeModal();
+  editNote.value = false;
 }
 function saveEdit() {
-  if (updatedNote.value !== null) {
-    notes.value[updatedNote.value] = newNote.value;
-  } else {
-    notes.value.push(updatedNote.value);
-  }
   // Save the changes and close the modal
   const index = notes.value.findIndex(
     (item) => item.text === updatedNote.value
@@ -65,12 +53,7 @@ function saveEdit() {
   if (index !== -1) {
     notes.value[index].text = updatedNote.value;
   }
-  // editNote.value = false;
-}
-function closeModal() {
-  showModal.value = false;
-  newNote.value = "";
-  updatedNote.value = null;
+  editNote.value = false;
 }
 </script>
 
@@ -79,7 +62,6 @@ function closeModal() {
     <!-- Modal for editing -->
     <div v-if="editNote" class="modal overlay">
       <div class="modal-content">
-        <h1>Edit Note</h1>
         <textarea v-model="updatedNote"></textarea>
         <button @click="saveEdit">Save</button>
         <button @click="cancelEdit">Cancel</button>
@@ -117,7 +99,7 @@ function closeModal() {
           <div class="card-title-container">
             <p>Card Header</p>
             <ul class="editBtn-container">
-              <li v-on:click="editNoteHandler(index)">
+              <li v-on:click="editNoteHandler(note)">
                 <img src="../assets/edit.svg" alt="" />
               </li>
               <li v-on:click="deleteCard(index)">
