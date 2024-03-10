@@ -17,7 +17,7 @@ function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNote = () => {
-  if (newNote.value.length < 10) {
+  if (newNote.value.length < 3) {
     return (errorMessage.value =
       "Note must be minimum of 10 characters or more!");
   }
@@ -36,36 +36,21 @@ function deleteCard(index) {
     notes.value.splice(index, 1);
   }
 }
-function editNoteHandler(index) {
+function editNoteHandler(note) {
   // Open the modal for editing
-  // editNote.value = true;
-  // updatedNote.value = note.text;
-  // xx
-  updatedNote.value = index;
-  if (index !== null) {
-    newNote.value = notes.value[index];
-  } else {
-    newNote.value = "";
-  }
+  editNote.value = true;
+  updatedNote.value = note.text;
 }
 function cancelEdit() {
   // Close the modal without saving changes
-  closeModal();
+  editNote.value = false;
 }
-function saveEdit() {
-  if (updatedNote.value !== null) {
-    notes.value[updatedNote.value] = newNote.value;
-  } else {
-    notes.value.push(updatedNote.value);
+function saveEdit(note) {
+  if (updatedNote.value.length > 3) {
+    note.text = updatedNote.value;
   }
-  // Save the changes and close the modal
-  const index = notes.value.findIndex(
-    (item) => item.text === updatedNote.value
-  );
-  if (index !== -1) {
-    notes.value[index].text = updatedNote.value;
-  }
-  // editNote.value = false;
+
+  editNote.value = false;
 }
 function closeModal() {
   showModal.value = false;
@@ -78,11 +63,11 @@ function closeModal() {
   <main>
     <!-- Modal for editing -->
     <div v-if="editNote" class="modal overlay">
-      <div class="modal-content">
+      <div class="modal-content" v-for="note in notes">
         <h1>Edit Note</h1>
         <textarea v-model="updatedNote"></textarea>
-        <button @click="saveEdit">Save</button>
-        <button @click="cancelEdit">Cancel</button>
+        <button v-on:click="saveEdit(note)">Save</button>
+        <button v-on:click="cancelEdit()">Cancel</button>
       </div>
     </div>
 
@@ -117,7 +102,7 @@ function closeModal() {
           <div class="card-title-container">
             <p>Card Header</p>
             <ul class="editBtn-container">
-              <li v-on:click="editNoteHandler(index)">
+              <li v-on:click="editNoteHandler(note)">
                 <img src="../assets/edit.svg" alt="" />
               </li>
               <li v-on:click="deleteCard(index)">
