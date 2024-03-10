@@ -17,7 +17,7 @@ function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNote = () => {
-  if (newNote.value.length < 3) {
+  if (newNote.value.length < 5) {
     return (errorMessage.value =
       "Note must be minimum of 10 characters or more!");
   }
@@ -31,11 +31,13 @@ const addNote = () => {
   newNote.value = "";
   errorMessage.value = "";
 };
+
 function deleteCard(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);
   }
 }
+
 function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
@@ -46,10 +48,11 @@ function cancelEdit() {
   editNote.value = false;
 }
 function saveEdit(note) {
-  if (updatedNote.value.length > 3) {
-    note.text = updatedNote.value;
+  if (updatedNote.value.length < 5) {
+    return (errorMessage.value =
+      "Note must be minimum of 10 characters or more!");
   }
-
+  note.text = updatedNote.value;
   editNote.value = false;
 }
 function closeModal() {
@@ -62,10 +65,17 @@ function closeModal() {
 <template>
   <main>
     <!-- Modal for editing -->
-    <div v-if="editNote" class="modal overlay">
-      <div class="modal-content" v-for="note in notes">
-        <h1>Edit Note</h1>
-        <textarea v-model="updatedNote"></textarea>
+    <div v-if="editNote" class="overlay">
+      <div class="modal" v-for="note in notes">
+        <h4 class="modalTitle">Edit Note</h4>
+        <textarea
+          v-model.trim="updatedNote"
+          name="note"
+          id="note"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
         <button v-on:click="saveEdit(note)">Save</button>
         <button v-on:click="cancelEdit()">Cancel</button>
       </div>
