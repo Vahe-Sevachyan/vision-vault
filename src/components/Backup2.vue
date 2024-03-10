@@ -3,17 +3,11 @@ import { ref } from "vue";
 const showModal = ref(false);
 const notes = ref([]);
 const newNote = ref("");
-const updatedNote = ref(null);
+const updatedNote = ref("");
+const editNote = ref(false);
 const errorMessage = ref("");
-// const editNote = ref(false);
 
-function toggleModal(index) {
-  updatedNote.value = index;
-  if (index !== null) {
-    newNote.value = notes.value[index];
-  } else {
-    newNote.value = "";
-  }
+function toggleModal() {
   showModal.value = true;
 }
 // function closeModal() {
@@ -26,57 +20,43 @@ const addNote = () => {
   if (newNote.value.length < 5) {
     return (errorMessage.value =
       "Note must be minimum of 10 characters or more!");
-  } else if (newNote.value.length >= 5) {
-    notes.value.push({
-      id: Math.floor(Math.random() * 10000000),
-      text: newNote.value,
-      date: new Date(),
-      backgroundColor: getRandomColor(),
-    });
-  } else {
-    notes.value.push(updatedNote.value);
   }
+  notes.value.push({
+    id: Math.floor(Math.random() * 10000000),
+    text: newNote.value,
+    date: new Date(),
+    backgroundColor: getRandomColor(),
+  });
   showModal.value = false;
   newNote.value = "";
   errorMessage.value = "";
 };
 
 function deleteCard(index) {
-  // if (index !== -1) {
-  //   notes.value.splice(index, 1);
-  // }
   if (index !== -1) {
     notes.value.splice(index, 1);
-    editNote.value.splice(index, 1); // Remove corresponding entry from editNote array
   }
 }
 
-function editNoteHandler(index) {
+function editNoteHandler(note, index) {
   // Open the modal for editing
-
-  updatedNote.index = index;
-  if (index !== null) {
-    newNote.value = notes.value[index];
-  } else {
-    newNote.value = "";
-  }
   // editNote.value = true;
   // updatedNote.value = note.text;
+  editNote[index].value = true;
+  updatedNote.value = note.text;
 }
 
 function cancelEdit() {
   // Close the modal without saving changes
   editNote.value = false;
 }
-function saveEdit() {
-  if (updatedNote.value !== null) {
-    notes.value[updatedNote.value] = newNote.value;
-  } else {
-    notes.value.push(newNote.value);
+function saveEdit(note) {
+  if (updatedNote.value.length < 5) {
+    return (errorMessage.value =
+      "Note must be minimum of 10 characters or more!");
   }
-  showModal.value = false;
-  // note.text = updatedNote.value;
-  // editNote.value = false;
+  note.text = updatedNote.value;
+  editNote.value = false;
 }
 function closeModal() {
   showModal.value = false;
@@ -88,7 +68,7 @@ function closeModal() {
 <template>
   <main>
     <!-- Modal for editing -->
-    <!-- <div v-if="editNote" class="overlay">
+    <div v-if="editNote" class="overlay">
       <div class="modal" v-for="note in notes">
         <h4 class="modalTitle">Edit Note</h4>
         <textarea
@@ -102,7 +82,7 @@ function closeModal() {
         <button v-on:click="saveEdit(note)">Save</button>
         <button v-on:click="cancelEdit()" id="close">Cancel</button>
       </div>
-    </div> -->
+    </div>
 
     <div v-if="showModal" class="overlay">
       <div class="modal">
@@ -116,14 +96,14 @@ function closeModal() {
           placeholder="Enter note..."
         ></textarea>
         <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
-        <button v-on:click="addNote()">Save</button>
+        <button v-on:click="addNote()">Add Note</button>
         <button id="close" v-on:click="closeModal()">Close</button>
       </div>
     </div>
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
-        <button v-on:click="toggleModal(null)">Create Note</button>
+        <button v-on:click="toggleModal()">Create Note</button>
       </header>
       <div class="cards-container">
         <div
@@ -135,7 +115,7 @@ function closeModal() {
           <div class="card-title-container">
             <p>Card Header</p>
             <ul class="editBtn-container">
-              <li v-on:click="toggleModal(index)">
+              <li v-on:click="editNoteHandler(note, index)">
                 <img src="../assets/edit.svg" alt="" />
               </li>
               <li v-on:click="deleteCard(index)">

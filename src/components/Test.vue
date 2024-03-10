@@ -1,3 +1,43 @@
+<script setup>
+import { ref } from "vue";
+const showModal = ref(false);
+const notes = ref([]);
+const editedNote = ref("");
+const editedIndex = ref(null);
+
+// Toggle modal for editing note
+const toggleModal = (index) => {
+  editedIndex.value = index;
+  if (index !== null) {
+    editedNote.value = notes.value[index];
+  } else {
+    editedNote.value = "";
+  }
+  showModal.value = true;
+};
+
+// Save edited note
+const saveEdit = () => {
+  if (editedIndex.value !== null) {
+    notes.value[editedIndex.value] = editedNote.value;
+  } else {
+    notes.value.push(editedNote.value);
+  }
+  closeModal();
+};
+
+// Close modal without saving changes
+const cancelEdit = () => {
+  closeModal();
+};
+
+// Close modal
+const closeModal = () => {
+  showModal.value = false;
+  editedNote.value = "";
+  editedIndex.value = null;
+};
+</script>
 <template>
   <div>
     <!-- Button to add new note -->
@@ -20,51 +60,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      notes: [],
-      showModal: false,
-      editedNote: "",
-      editedIndex: null,
-    };
-  },
-  methods: {
-    // Toggle modal for editing note
-    toggleModal(index) {
-      this.editedIndex = index;
-      if (index !== null) {
-        this.editedNote = this.notes[index];
-      } else {
-        this.editedNote = "";
-      }
-      this.showModal = true;
-    },
-    // Save edited note
-    saveEdit() {
-      if (this.editedIndex !== null) {
-        this.notes[this.editedIndex] = this.editedNote;
-      } else {
-        this.notes.push(this.editedNote);
-      }
-      this.closeModal();
-    },
-    // Close modal without saving changes
-    cancelEdit() {
-      this.closeModal();
-    },
-    // Close modal
-    closeModal() {
-      this.showModal = false;
-      this.editedNote = "";
-      this.editedIndex = null;
-    },
-  },
-};
-</script>
-
-<style>
+<style scoped>
 .modal {
   position: fixed;
   top: 0;
