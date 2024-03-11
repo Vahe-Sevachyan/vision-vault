@@ -1,7 +1,30 @@
+<template>
+  <div>
+    <!-- Button to add new note -->
+    <button @click="toggleModal(null)">Add Note</button>
+
+    <!-- Modal for editing note -->
+    <div v-if="showModal" class="modal">
+      <div class="modal-content">
+        <textarea v-model="editedNote"></textarea>
+        <button @click="saveEdit">Save</button>
+        <button @click="cancelEdit">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Display existing notes -->
+    <div v-for="(note, index) in notes" :key="index" class="note">
+      <p>{{ note }}</p>
+      <button @click="toggleModal(index)">Edit</button>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
-const showModal = ref(false);
+
 const notes = ref([]);
+const showModal = ref(false);
 const editedNote = ref("");
 const editedIndex = ref(null);
 
@@ -38,27 +61,6 @@ const closeModal = () => {
   editedIndex.value = null;
 };
 </script>
-<template>
-  <div>
-    <!-- Button to add new note -->
-    <button @click="toggleModal(null)">Add Note</button>
-
-    <!-- Modal for editing note -->
-    <div v-if="showModal" class="modal">
-      <div class="modal-content">
-        <textarea v-model="editedNote"></textarea>
-        <button @click="saveEdit">Save</button>
-        <button @click="cancelEdit">Cancel</button>
-      </div>
-    </div>
-
-    <!-- Display existing notes -->
-    <div v-for="(note, index) in notes" :key="index" class="note">
-      <p>{{ note }}</p>
-      <button @click="toggleModal(index)">Edit</button>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .modal {

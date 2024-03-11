@@ -86,7 +86,7 @@ function cancelEdit() {
           rows="10"
         ></textarea>
         <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
-        <button v-on:click="saveEdit(selectedNote)">Save</button>
+        <button v-on:click="saveEdit(note)">Save</button>
         <button v-on:click="cancelEdit()" id="close">Cancel</button>
       </div>
     </div>
