@@ -5,6 +5,7 @@ const notes = ref([]);
 const newNote = ref("");
 const updatedNote = ref("");
 const editNote = ref(false);
+const selectedNote = ref(null);
 const errorMessage = ref("");
 
 function toggleModal() {
@@ -47,9 +48,8 @@ function closeModal() {
 
 function editNoteHandler(note) {
   // Open the modal for editing
-  // editNote.value = true;
-  // updatedNote.value = note.text;
   editNote.value = true;
+  selectedNote.value = note;
   updatedNote.value = note.text;
 }
 
@@ -76,7 +76,7 @@ function cancelEdit() {
   <main>
     <!-- Modal for editing -->
     <div v-if="editNote" class="overlay">
-      <div class="modal" v-for="note in notes">
+      <div class="modal">
         <h4 class="modalTitle">Edit Note</h4>
         <textarea
           v-model.trim="updatedNote"
@@ -122,7 +122,7 @@ function cancelEdit() {
           <div class="card-title-container">
             <p>Card Header</p>
             <ul class="editBtn-container">
-              <li v-on:click="editNoteHandler(note, index)">
+              <li v-on:click="editNoteHandler(note)">
                 <img src="../assets/edit.svg" alt="" />
               </li>
               <li v-on:click="deleteCard(index)">

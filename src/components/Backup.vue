@@ -1,23 +1,22 @@
 <script setup>
 import { ref } from "vue";
 const showModal = ref(false);
-const newNote = ref("");
 const notes = ref([]);
-const errorMessage = ref("");
-const editNote = ref(false);
+const newNote = ref("");
 const updatedNote = ref("");
+const editNote = ref(false);
+const selectedNote = ref(null);
+const errorMessage = ref("");
 
 function toggleModal() {
   showModal.value = true;
 }
-function closeModal() {
-  showModal.value = false;
-}
+
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNote = () => {
-  if (newNote.value.length < 10) {
+  if (newNote.value.length < 5) {
     return (errorMessage.value =
       "Note must be minimum of 10 characters or more!");
   }
@@ -31,40 +30,64 @@ const addNote = () => {
   newNote.value = "";
   errorMessage.value = "";
 };
-function deleteCard(index) {
-  if (index !== -1) {
-    notes.value.splice(index, 1);
+
+function saveEdit(note) {
+  if (updatedNote.value.length < 5) {
+    return (errorMessage.value =
+      "Note must be minimum of 10 characters or more!");
   }
+  note.text = updatedNote.value;
+  editNote.value = false;
 }
+
+function closeModal() {
+  showModal.value = false;
+  newNote.value = "";
+  updatedNote.value = null;
+}
+
 function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
+  selectedNote.value = note;
   updatedNote.value = note.text;
 }
+
+function deleteCard(index) {
+  // if (index !== -1) {
+  //   notes.value.splice(index, 1);
+  // }
+  if (index !== -1) {
+    notes.value.splice(index, 1);
+    editNote.value.splice(index, 1); // Remove corresponding entry from editNote array
+  }
+}
+
 function cancelEdit() {
   // Close the modal without saving changes
   editNote.value = false;
 }
-function saveEdit() {
-  // Save the changes and close the modal
-  const index = notes.value.findIndex(
-    (item) => item.text === updatedNote.value
-  );
-  if (index !== -1) {
-    notes.value[index].text = updatedNote.value;
-  }
-  editNote.value = false;
-}
+// function closeModal() {
+//   showModal.value = false;
+// }
 </script>
 
 <template>
   <main>
     <!-- Modal for editing -->
-    <div v-if="editNote" class="modal overlay">
-      <div class="modal-content">
-        <textarea v-model="updatedNote"></textarea>
-        <button @click="saveEdit">Save</button>
-        <button @click="cancelEdit">Cancel</button>
+    <div v-if="editNote" class="overlay">
+      <div class="modal">
+        <h4 class="modalTitle">Edit Note</h4>
+        <textarea
+          v-model.trim="updatedNote"
+          name="note"
+          id="note"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
+        <button v-on:click="saveEdit(selectedNote)">Save</button>
+        <button v-on:click="cancelEdit()" id="close">Cancel</button>
       </div>
     </div>
 
