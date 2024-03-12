@@ -1,9 +1,9 @@
 <script setup>
-import CreateCard from "./components/CreateCard.vue";
+import BackUp from "./backup/BackUp.vue";
 </script>
 
 <template>
-  <CreateCard />
+  <BackUp />
 </template>
 
 <style scoped></style>
