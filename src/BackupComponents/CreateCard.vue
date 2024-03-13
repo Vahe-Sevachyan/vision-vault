@@ -1,63 +1,21 @@
 <script setup>
 import { ref } from "vue";
-const showModal = ref(false);
-const notes = ref([]);
+
 const newNote = ref("");
 const updatedNote = ref("");
 const editNote = ref(false);
 const selectedNote = ref(null);
-const errorMessage = ref("");
 
 // function closeModal() {
 //   showModal.value = false;
 // }
 </script>
 
-<template>
-  <main>
-    <!-- Modal for editing -->
-  </main>
-</template>
+<template></template>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&family=Black+Ops+One&family=Kumbh+Sans:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oleo+Script:wght@700&family=Plus+Jakarta+Sans:wght@500;800&family=Poppins:wght@300;400&family=Roboto:wght@400;500&display=swap");
 
-main {
-  height: 100vh;
-  width: 100vw;
-}
-.container {
-  max-width: 935px;
-  padding: 10px;
-  margin: 0 auto;
-}
-/* ***MODAL*** */
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.77);
-  z-index: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modalTitle {
-  margin-top: -15px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-family: "Nunito", Verdana, sans-serif;
-  font-size: 25px;
-  font-weight: bold;
-}
-.modal {
-  width: 450px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
+/*             ***MODAL***          */
 
 .modal button {
   background-image: linear-gradient(
@@ -110,11 +68,6 @@ main {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
-}
-
-.errorMsg {
-  color: tomato;
-  font-family: Verdana, Tahoma, sans-serif;
 }
 
 textarea {

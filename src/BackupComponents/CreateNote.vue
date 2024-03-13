@@ -18,7 +18,8 @@
 </template>
 <script setup>
 import { ref } from "vue";
-
+const showModal = ref(false);
+const errorMessage = ref("");
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
@@ -43,4 +44,37 @@ function closeModal() {
   updatedNote.value = null;
 }
 </script>
-<style scoped></style>
+<style scoped>
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.77);
+  z-index: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalTitle {
+  margin-top: -15px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: "Nunito", Verdana, sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+}
+.modal {
+  width: 450px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.errorMsg {
+  color: tomato;
+  font-family: Verdana, Tahoma, sans-serif;
+}
+</style>
