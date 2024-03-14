@@ -4,7 +4,7 @@ const showModal = ref(false);
 const notes = ref([]);
 const newNote = ref("");
 const updatedNote = ref("");
-const editNote = ref([]);
+const editNote = ref(false);
 const selectedNote = ref(null);
 const errorMessage = ref("");
 
