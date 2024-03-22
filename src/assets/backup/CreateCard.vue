@@ -90,7 +90,6 @@ function cancelEdit() {
         <button v-on:click="cancelEdit()" id="close">Cancel</button>
       </div>
     </div>
-
     <div v-if="showModal" class="overlay">
       <div class="modal">
         <p class="modalTitle">New Note</p>

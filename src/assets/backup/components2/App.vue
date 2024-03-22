@@ -2,10 +2,7 @@
   <main>
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
     <div class="container">
-      <header>
-        <h1>Vision Vault</h1>
-        <button @click="toggleModal()">Create Note</button>
-      </header>
+      <Header :showModal="showModal" />
       <NoteCard
         v-for="(note, index) in notes"
         :key="note.id"
@@ -21,13 +18,10 @@
 import { ref } from "vue";
 import Modal from "./components/Modal.vue";
 import NoteCard from "./components/NoteCard.vue";
+import Header from "./components/Header.vue";
 
 const showModal = ref(false);
 const notes = ref([]);
-
-function toggleModal() {
-  showModal.value = true;
-}
 
 function addNote(newNote) {
   notes.value.push(newNote);

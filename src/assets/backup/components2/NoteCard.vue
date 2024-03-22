@@ -17,14 +17,14 @@
 <script setup>
 import { ref } from "vue";
 
-const note = ref(props.note);
+const note = ref();
 
 function editNote() {
-  $emit("edit-note", note.value);
+  note.value;
 }
 
 function deleteNote() {
-  $emit("delete-note", note.value);
+  note.value;
 }
 </script>
 
@@ -48,7 +48,6 @@ function deleteNote() {
 .text-container {
   width: 210px;
   height: 200px;
-
   overflow-y: auto;
   border: 1px solid black;
   word-wrap: break-word;
