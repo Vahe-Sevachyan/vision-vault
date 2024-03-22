@@ -7,6 +7,7 @@
         <li @click="deleteNote"><img src="../assets/trash.svg" alt="" /></li>
       </ul>
     </div>
+    <!--No styles for text-container -->
     <div class="text-container">
       <p class="main-text">{{ note.text }}</p>
     </div>

@@ -22,7 +22,6 @@ import { ref } from "vue";
 
 const noteText = ref("");
 const errorMessage = ref("");
-
 const title = ref("New Note");
 const placeholder = ref("Enter note...");
 const saveButtonText = ref("Save Note");
