@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
 
 const noteText = ref("");
 const errorMessage = ref("");
@@ -26,10 +26,11 @@ const title = ref("New Note");
 const placeholder = ref("Enter note...");
 const saveButtonText = ref("Save Note");
 const closeButtonText = ref("Close");
+const emit = defineEmits("add-note", "close");
 
 function saveNote() {
-  if (noteText.value.length < 10) {
-    errorMessage.value = "Note must be minimum of 10 characters or more!";
+  if (noteText.value.length < 5) {
+    errorMessage.value = "Note must be minimum of 5 characters or more!";
     return;
   }
   const newNote = {
@@ -40,13 +41,13 @@ function saveNote() {
   };
   errorMessage.value = "";
   noteText.value = "";
-  $emit("add-note", newNote);
+  emit("add-note", newNote);
 }
 
 function closeModal() {
   noteText.value = "";
   errorMessage.value = "";
-  $emit("close");
+  emit("close");
 }
 
 function getRandomColor() {

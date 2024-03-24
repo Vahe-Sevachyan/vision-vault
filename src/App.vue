@@ -6,6 +6,7 @@
         <h1>Vision Vault</h1>
         <button @click="toggleModal()">Create Note</button>
       </header>
+      <Display personName="Vahe" />
       <NoteCard
         v-for="(note, index) in notes"
         :key="note.id"
@@ -21,7 +22,7 @@
 import { ref } from "vue";
 import Modal from "./components/Modal.vue";
 import NoteCard from "./components/NoteCard.vue";
-
+import Display from "./components/Display.vue";
 const showModal = ref(false);
 const notes = ref([]);
 
@@ -34,9 +35,9 @@ function addNote(newNote) {
   showModal.value = false;
 }
 
-// function closeModal() {
-//   showModal.value = false;
-// }
+function closeModal() {
+  showModal.value = false;
+}
 
 function editNoteHandler(note) {
   showModal.value = true;
@@ -44,7 +45,11 @@ function editNoteHandler(note) {
 }
 
 function deleteCard(index) {
-  notes.value.splice(index, 1);
+  if (index !== -1) {
+    notes.value.splice(index, 1);
+    // editNote.value.splice(index, 1);
+  }
+  // notes.value.splice(index, 1);
 }
 </script>
 

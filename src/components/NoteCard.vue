@@ -16,16 +16,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
+import { ref, defineProps } from "vue";
+const emit = defineEmits("edit-note", "delete-note");
+const props = defineProps({
+  note: Object,
+});
 const note = ref(props.note);
 
 function editNote() {
-  $emit("edit-note", note.value);
+  emit("edit-note", note.value);
 }
 
 function deleteNote() {
-  $emit("delete-note", note.value);
+  emit("delete-note", note.value);
 }
 </script>
 
