@@ -1,6 +1,7 @@
 <template>
   <main>
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
+    <EditModal v-if="editNote" />
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
@@ -11,8 +12,8 @@
         v-for="(note, index) in notes"
         :key="note.id"
         :note="note"
-        @edit-note="editNoteHandler"
-        @delete-note="deleteCard(index)"
+        @edit-note="editNoteHandler(note)"
+        @delete-note="deleteNoteHandler(index)"
       />
     </div>
   </main>
@@ -23,9 +24,12 @@ import { ref } from "vue";
 import Modal from "./components/Modal.vue";
 import NoteCard from "./components/NoteCard.vue";
 import Display from "./components/Display.vue";
+import EditModal from "./components/EditModal.vue";
 const showModal = ref(false);
 const notes = ref([]);
-
+const selectedNote = ref(null);
+const editNote = ref(false);
+// const updatedNote = ref("");
 function toggleModal() {
   showModal.value = true;
 }
@@ -35,22 +39,28 @@ function addNote(newNote) {
   showModal.value = false;
 }
 
+function editNoteHandler(note) {
+  // Open the modal for editing
+  editNote.value = true;
+  selectedNote.value = note;
+  updatedNote.value = note.text;
+}
+
 function closeModal() {
   showModal.value = false;
 }
 
-function editNoteHandler(note) {
-  showModal.value = true;
-  // Handle edit note logic
-}
-
-function deleteCard(index) {
+function deleteNoteHandler(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);
     // editNote.value.splice(index, 1);
   }
   // notes.value.splice(index, 1);
 }
+// function editNoteHandler(note) {
+//   showModal.value = true;
+//   // Handle edit note logic
+// }
 </script>
 
 <style scoped>

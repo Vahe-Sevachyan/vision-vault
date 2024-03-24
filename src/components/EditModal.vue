@@ -1,60 +1,24 @@
 <template>
   <div class="overlay">
     <div class="modal">
-      <p class="modalTitle">{{ title }}</p>
+      <h4 class="modalTitle">Edit Note</h4>
       <textarea
-        v-model.trim="noteText"
+        v-model.trim="updatedNote"
         name="note"
         id="note"
         cols="30"
         rows="10"
-        :placeholder="placeholder"
       ></textarea>
       <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
-      <button @click="saveNote">{{ saveButtonText }}</button>
-      <button id="close" @click="closeModal">{{ closeButtonText }}</button>
+      <button v-on:click="saveEdit(selectedNote)">Save</button>
+      <button v-on:click="cancelEdit()" id="close">Cancel</button>
     </div>
   </div>
 </template>
-
 <script setup>
-import { ref, defineEmits } from "vue";
-
-const noteText = ref("");
-const errorMessage = ref("");
-const title = ref("New Note");
-const placeholder = ref("Enter note...");
-const saveButtonText = ref("Add Note");
-const closeButtonText = ref("Close");
-const emit = defineEmits("add-note", "close");
-
-function saveNote() {
-  if (noteText.value.length < 5) {
-    errorMessage.value = "Note must be minimum of 5 characters or more!";
-    return;
-  }
-  const newNote = {
-    id: Math.floor(Math.random() * 10000000),
-    text: noteText.value,
-    date: new Date(),
-    backgroundColor: getRandomColor(),
-  };
-  errorMessage.value = "";
-  noteText.value = "";
-  emit("add-note", newNote);
-}
-
-function closeModal() {
-  noteText.value = "";
-  errorMessage.value = "";
-  emit("close");
-}
-
-function getRandomColor() {
-  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
-}
+import { ref } from "vue";
+const updatedNote = ref("");
 </script>
-
 <style scoped>
 .overlay {
   position: absolute;
