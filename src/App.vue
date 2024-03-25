@@ -1,7 +1,7 @@
 <template>
   <main>
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
-    <EditModal v-if="editNote" />
+    <EditModal v-if="editNote" :note="updatedNote" @close="cancelEditModal" />
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
@@ -29,7 +29,7 @@ const showModal = ref(false);
 const notes = ref([]);
 const selectedNote = ref(null);
 const editNote = ref(false);
-// const updatedNote = ref("");
+const updatedNote = ref("");
 function toggleModal() {
   showModal.value = true;
 }
@@ -44,12 +44,15 @@ function editNoteHandler(note) {
   editNote.value = true;
   selectedNote.value = note;
   updatedNote.value = note.text;
+  console.log(updatedNote.value);
 }
 
 function closeModal() {
   showModal.value = false;
 }
-
+function cancelEditModal() {
+  editNote.value = false;
+}
 function deleteNoteHandler(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);

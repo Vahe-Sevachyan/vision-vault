@@ -11,13 +11,19 @@
       ></textarea>
       <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
       <button v-on:click="saveEdit(selectedNote)">Save</button>
-      <button v-on:click="cancelEdit()" id="close">Cancel</button>
+      <button v-on:click="cancelEditModal()" id="close">Cancel</button>
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
+const emit = defineEmits("close");
 const updatedNote = ref("");
+function cancelEditModal() {
+  updatedNote.value = "";
+  //   errorMessage.value = "";
+  emit("close");
+}
 </script>
 <style scoped>
 .overlay {
