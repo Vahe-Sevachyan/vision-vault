@@ -10,20 +10,36 @@
         rows="10"
       ></textarea>
       <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
-      <button v-on:click="saveEdit(selectedNote)">Save</button>
+      <button v-on:click="saveEdit()">Save Note</button>
       <button v-on:click="cancelEditModal()" id="close">Cancel</button>
     </div>
   </div>
 </template>
 <script setup>
-import { ref, defineEmits } from "vue";
-const emit = defineEmits("close");
-const updatedNote = ref("");
+// import { ref, defineEmits } from "vue"; --1
+import { ref, defineProps } from "vue";
+const emit = defineEmits(["close", "updateNote"]);
+
+const props = defineProps({
+  modifiedNote: {
+    type: String,
+    required: true,
+  },
+});
+
 function cancelEditModal() {
   updatedNote.value = "";
-  //   errorMessage.value = "";
   emit("close");
+  //   errorMessage.value = "";
 }
+
+function saveEdit() {
+  emit("updateNote", updatedNote.value);
+}
+// function saveEdit() {
+//   emit("updateNote", "modifiedNote"); --2
+// }
+const updatedNote = ref(props.modifiedNote);
 </script>
 <style scoped>
 .overlay {

@@ -1,7 +1,13 @@
 <template>
+  <!-- :note="updatedNote" --3-->
   <main>
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
-    <EditModal v-if="editNote" :note="updatedNote" @close="cancelEditModal" />
+    <EditModal
+      v-if="editNote"
+      :modifiedNote="selectedNote.text"
+      @close="cancelEditModal"
+      @updateNote="saveEdit"
+    />
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
@@ -29,7 +35,7 @@ const showModal = ref(false);
 const notes = ref([]);
 const selectedNote = ref(null);
 const editNote = ref(false);
-const updatedNote = ref("");
+// const updatedNote = ref("");
 function toggleModal() {
   showModal.value = true;
 }
@@ -43,15 +49,23 @@ function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
   selectedNote.value = note;
-  updatedNote.value = note.text;
-  console.log(updatedNote.value);
+  // updatedNote.value = note.text;
+  // console.log(updatedNote.value);
 }
 
+function saveEdit(updatedNote) {
+  if (selectedNote.value) {
+    selectedNote.value.text = updatedNote;
+    editNote.value = false;
+    selectedNote.value = null;
+  }
+}
 function closeModal() {
   showModal.value = false;
 }
 function cancelEditModal() {
   editNote.value = false;
+  selectedNote.value = null;
 }
 function deleteNoteHandler(index) {
   if (index !== -1) {
