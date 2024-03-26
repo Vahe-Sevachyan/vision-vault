@@ -3,6 +3,7 @@
     <div class="modal">
       <h4 class="modalTitle">Edit Note</h4>
       <textarea
+        ref="editTextarea"
         v-model.trim="updatedNote"
         name="note"
         id="note"
@@ -36,6 +37,7 @@ function cancelEditModal() {
 function saveEdit() {
   emit("updateNote", updatedNote.value);
 }
+
 // function saveEdit() {
 //   emit("updateNote", "modifiedNote"); --2
 // }

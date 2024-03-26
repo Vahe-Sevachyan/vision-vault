@@ -13,14 +13,16 @@
         <h1>Vision Vault</h1>
         <button @click="toggleModal()">Create Note</button>
       </header>
-      <Display personName="Vahe" />
-      <NoteCard
-        v-for="(note, index) in notes"
-        :key="note.id"
-        :note="note"
-        @edit-note="editNoteHandler(note)"
-        @delete-note="deleteNoteHandler(index)"
-      />
+
+      <div class="card-wrapper">
+        <NoteCard
+          v-for="(note, index) in notes"
+          :key="note.id"
+          :note="note"
+          @edit-note="editNoteHandler(note)"
+          @delete-note="deleteNoteHandler(index)"
+        />
+      </div>
     </div>
   </main>
 </template>
@@ -49,10 +51,13 @@ function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
   selectedNote.value = note;
+  focusTextarea();
   // updatedNote.value = note.text;
   // console.log(updatedNote.value);
 }
-
+function focusTextarea() {
+  $refs.editTextarea.focus();
+}
 function saveEdit(updatedNote) {
   if (selectedNote.value) {
     selectedNote.value.text = updatedNote;
@@ -86,13 +91,22 @@ main {
   width: 100vw;
 }
 .container {
-  max-width: 935px;
+  max-width: 1700px;
   padding: 10px;
   margin: 0 auto;
 }
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 1px solid red;
   align-items: center;
 }
 h1 {

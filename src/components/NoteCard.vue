@@ -33,11 +33,11 @@ function deleteNote() {
 </script>
 
 <style scoped>
-.cards-container {
+/* .cards-container {
   display: flex;
   flex-wrap: wrap;
   width: 1000px;
-}
+} */
 .card {
   width: 240px;
   height: 285px;
@@ -49,10 +49,19 @@ function deleteNote() {
   margin: 0 15px 15px 0;
   border: 1px solid white;
 }
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  width: 210px;
+  /* height: 30px; */
+  border: 1px solid black;
+  margin: auto;
+}
 .text-container {
   width: 210px;
   height: 200px;
-
   overflow-y: auto;
   border: 1px solid black;
   word-wrap: break-word;
@@ -71,16 +80,7 @@ function deleteNote() {
   position: relative;
   top: -6px; */
 }
-.card-title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 5px;
-  width: 210px;
-  /* height: 30px; */
-  border: 1px solid black;
-  margin: auto;
-}
+
 .card-title-container p {
   margin-bottom: 5px;
 }
