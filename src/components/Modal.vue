@@ -7,6 +7,7 @@
           type="text"
           class="title-input"
           :placeholder="inputAreaPlaceHolder"
+          v-model.trim="titleText"
         />
       </div>
       <textarea
@@ -27,32 +28,39 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 const noteText = ref("");
+const titleText = ref("");
 const errorMessage = ref("");
 const title = ref("New Note");
 const textAreaPlaceHolder = ref("Enter note...");
-const inputAreaPlaceHolder = ref("Enter title");
+const inputAreaPlaceHolder = ref("Enter title...");
 const saveButtonText = ref("Add Note");
 const closeButtonText = ref("Close");
 const emit = defineEmits("add-note", "close");
 
 function saveNote() {
-  if (noteText.value.length < 5) {
+  if (titleText.value.length < 3) {
+    errorMessage.value = "Title must be minimum of 3 characters or more!";
+    return;
+  } else if (noteText.value.length < 5) {
     errorMessage.value = "Note must be minimum of 5 characters or more!";
     return;
   }
   const newNote = {
     id: Math.floor(Math.random() * 10000000),
+    title: titleText.value,
     text: noteText.value,
     date: new Date(),
     backgroundColor: getRandomColor(),
   };
   errorMessage.value = "";
   noteText.value = "";
+  titleText.value = "";
   emit("add-note", newNote);
 }
 
 function closeModal() {
   noteText.value = "";
+  titleText.value = "";
   errorMessage.value = "";
   emit("close");
 }
@@ -65,7 +73,8 @@ function getRandomColor() {
 <style scoped>
 .title-input {
   border: 1px solid black;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 .overlay {
   position: absolute;

@@ -1,7 +1,7 @@
 <template>
   <div class="card" :style="{ backgroundColor: note.backgroundColor }">
     <div class="card-title-container">
-      <p>Card Header</p>
+      <p>{{ note.title }}</p>
       <ul class="editBtn-container">
         <li @click="editNote"><img src="../assets/edit.svg" alt="" /></li>
         <li @click="deleteNote"><img src="../assets/trash.svg" alt="" /></li>
