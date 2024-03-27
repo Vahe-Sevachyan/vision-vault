@@ -1,14 +1,21 @@
 <template>
   <div class="overlay">
     <div class="modal">
-      <p class="modalTitle">{{ title }}</p>
+      <h2 class="modalTitle">{{ title }}</h2>
+      <div>
+        <input
+          type="text"
+          class="title-input"
+          :placeholder="inputAreaPlaceHolder"
+        />
+      </div>
       <textarea
         v-model.trim="noteText"
         name="note"
         id="note"
         cols="30"
         rows="10"
-        :placeholder="placeholder"
+        :placeholder="textAreaPlaceHolder"
       ></textarea>
       <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
       <button @click="saveNote">{{ saveButtonText }}</button>
@@ -19,11 +26,11 @@
 
 <script setup>
 import { ref, defineEmits } from "vue";
-
 const noteText = ref("");
 const errorMessage = ref("");
 const title = ref("New Note");
-const placeholder = ref("Enter note...");
+const textAreaPlaceHolder = ref("Enter note...");
+const inputAreaPlaceHolder = ref("Enter title");
 const saveButtonText = ref("Add Note");
 const closeButtonText = ref("Close");
 const emit = defineEmits("add-note", "close");
@@ -56,6 +63,10 @@ function getRandomColor() {
 </script>
 
 <style scoped>
+.title-input {
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
 .overlay {
   position: absolute;
   width: 100%;
@@ -73,6 +84,10 @@ function getRandomColor() {
   font-family: "Nunito", Verdana, sans-serif;
   font-size: 25px;
   font-weight: bold;
+}
+.title-input:focus {
+  outline: none;
+  border: 2px solid #106de6;
 }
 .modal {
   width: 450px;

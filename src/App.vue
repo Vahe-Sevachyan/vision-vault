@@ -105,7 +105,8 @@ header {
 .card-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
+  /* justify-content: flex-start; */
   border: 1px solid red;
   align-items: center;
 }

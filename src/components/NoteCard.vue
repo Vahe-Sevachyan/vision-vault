@@ -48,7 +48,17 @@ function deleteNote() {
   justify-content: space-between;
   margin: 0 15px 15px 0;
   border: 1px solid white;
+  /* transition: transform 1.3s ease; */
+  /* border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px); */
 }
+/* .card.removing {
+  transform: translateX(-100%);
+} */
+
 .card-title-container {
   display: flex;
   justify-content: space-between;
