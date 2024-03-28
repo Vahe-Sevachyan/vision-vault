@@ -2,6 +2,14 @@
   <div class="overlay">
     <div class="modal">
       <h4 class="modalTitle">Edit Note</h4>
+      <div>
+        <input
+          type="text"
+          class="title-input"
+          v-model.trim="updatedTitle"
+          ref="titleInput"
+        />
+      </div>
       <textarea
         ref="editTextarea"
         v-model.trim="updatedNote"
@@ -18,11 +26,15 @@
 </template>
 <script setup>
 // import { ref, defineEmits } from "vue"; --1
-import { ref, defineProps } from "vue";
-const emit = defineEmits(["close", "updateNote"]);
+import { ref, defineProps, defineEmits } from "vue";
+const emit = defineEmits(["close", "updateNote", "updateTitle"]);
 
 const props = defineProps({
   modifiedNote: {
+    type: String,
+    required: true,
+  },
+  modifiedTitle: {
     type: String,
     required: true,
   },
@@ -30,18 +42,20 @@ const props = defineProps({
 
 function cancelEditModal() {
   updatedNote.value = "";
+  updatedTitle.value = "";
   emit("close");
   //   errorMessage.value = "";
 }
 
 function saveEdit() {
+  //   emit("updateNote", updatedNote.value);
+  //   emit("updateTitle", updatedTitle.value);
   emit("updateNote", updatedNote.value);
+  emit("updateTitle", updatedTitle.value);
 }
 
-// function saveEdit() {
-//   emit("updateNote", "modifiedNote"); --2
-// }
 const updatedNote = ref(props.modifiedNote);
+const updatedTitle = ref(props.modifiedTitle);
 </script>
 <style scoped>
 .overlay {
@@ -53,6 +67,11 @@ const updatedNote = ref(props.modifiedNote);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.title-input {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  width: 100%;
 }
 .modalTitle {
   margin-top: -15px;

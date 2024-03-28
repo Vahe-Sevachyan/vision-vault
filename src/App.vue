@@ -4,16 +4,17 @@
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
     <EditModal
       v-if="editNote"
-      :modifiedNote="selectedNote.text"
       @close="cancelEditModal"
       @updateNote="saveEdit"
+      @updateTitle="saveTitle"
+      :modifiedNote="selectedNote.text"
+      :modifiedTitle="selectedNote.title"
     />
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
         <button @click="toggleModal()">Create Note</button>
       </header>
-
       <div class="card-wrapper">
         <NoteCard
           v-for="(note, index) in notes"
@@ -31,11 +32,11 @@
 import { ref } from "vue";
 import Modal from "./components/Modal.vue";
 import NoteCard from "./components/NoteCard.vue";
-import Display from "./components/Display.vue";
 import EditModal from "./components/EditModal.vue";
 const showModal = ref(false);
 const notes = ref([]);
 const selectedNote = ref(null);
+// const selectedTitle = ref(null);
 const editNote = ref(false);
 // const updatedNote = ref("");
 function toggleModal() {
@@ -51,12 +52,12 @@ function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
   selectedNote.value = note;
-  focusTextarea();
-  // updatedNote.value = note.text;
-  // console.log(updatedNote.value);
+  // selectedTitle.value = note;
 }
-function focusTextarea() {
-  $refs.editTextarea.focus();
+function saveTitle(updatedTitle) {
+  if (selectedNote.value) {
+    selectedNote.value.title = updatedTitle;
+  }
 }
 function saveEdit(updatedNote) {
   if (selectedNote.value) {
@@ -107,7 +108,7 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   /* justify-content: flex-start; */
-  border: 1px solid red;
+  /* border: 1px solid red; */
   align-items: center;
 }
 h1 {
