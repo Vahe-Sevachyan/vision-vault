@@ -36,8 +36,8 @@ import EditModal from "./components/EditModal.vue";
 const showModal = ref(false);
 const notes = ref([]);
 const selectedNote = ref(null);
-// const selectedTitle = ref(null);
 const editNote = ref(false);
+// const selectedTitle = ref(null);
 // const updatedNote = ref("");
 function toggleModal() {
   showModal.value = true;
@@ -52,27 +52,32 @@ function editNoteHandler(note) {
   // Open the modal for editing
   editNote.value = true;
   selectedNote.value = note;
-  // selectedTitle.value = note;
 }
+
 function saveTitle(updatedTitle) {
   if (selectedNote.value) {
     selectedNote.value.title = updatedTitle;
   }
 }
+
 function saveEdit(updatedNote) {
   if (selectedNote.value) {
     selectedNote.value.text = updatedNote;
     editNote.value = false;
     selectedNote.value = null;
+    console.log();
   }
 }
+
 function closeModal() {
   showModal.value = false;
 }
+
 function cancelEditModal() {
   editNote.value = false;
   selectedNote.value = null;
 }
+
 function deleteNoteHandler(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);
