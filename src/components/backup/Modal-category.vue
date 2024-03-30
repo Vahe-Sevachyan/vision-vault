@@ -5,8 +5,14 @@
       <div>
         <input
           type="text"
+          class="category-input"
+          :placeholder="categoryInputPlaceholder"
+          v-model.trim="categoryText"
+        />
+        <input
+          type="text"
           class="title-input"
-          :placeholder="inputAreaPlaceHolder"
+          :placeholder="titleInputPlaceHolder"
           v-model.trim="titleText"
         />
       </div>
@@ -29,28 +35,38 @@
 import { ref, defineEmits } from "vue";
 const noteText = ref("");
 const titleText = ref("");
+const categoryText = ref("");
 const errorMessage = ref("");
 const title = ref("New Note");
-const textAreaPlaceHolder = ref("Enter note...");
-const inputAreaPlaceHolder = ref("Enter title...");
+const categoryInputPlaceholder = ref("Category Name");
+const textAreaPlaceHolder = ref("...");
+const titleInputPlaceHolder = ref("Note Title...");
 const saveButtonText = ref("Add Note");
 const closeButtonText = ref("Close");
 const emit = defineEmits("add-note", "close");
 
 function saveNote() {
-  if (titleText.value.length < 3) {
+  if (!categoryText) {
+    errorMessage.value = "Please choose a category";
+    return;
+  } else if (titleText.value.length < 3) {
     errorMessage.value = "Title must be minimum of 3 characters or more!";
     return;
   } else if (noteText.value.length < 5) {
     errorMessage.value = "Note must be minimum of 5 characters or more!";
     return;
   }
+
   const newNote = {
+    category: categoryText.value,
     id: Math.floor(Math.random() * 10000000),
-    title: titleText.value,
-    text: noteText.value,
-    date: new Date(),
-    backgroundColor: getRandomColor(),
+    data: {
+      id: Math.floor(Math.random() * 10000000),
+      title: titleText.value,
+      text: noteText.value,
+      date: new Date(),
+      backgroundColor: getRandomColor(),
+    },
   };
   errorMessage.value = "";
   noteText.value = "";
@@ -71,7 +87,8 @@ function getRandomColor() {
 </script>
 
 <style scoped>
-.title-input {
+.title-input,
+.category-input {
   border: 1px solid black;
   margin-bottom: 10px;
   width: 100%;

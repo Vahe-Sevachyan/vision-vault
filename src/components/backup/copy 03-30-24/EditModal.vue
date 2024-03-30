@@ -1,81 +1,59 @@
 <template>
   <div class="overlay">
     <div class="modal">
-      <h2 class="modalTitle">{{ title }}</h2>
+      <h4 class="modalTitle">Edit Note</h4>
       <div>
         <input
           type="text"
           class="title-input"
-          :placeholder="inputAreaPlaceHolder"
-          v-model.trim="titleText"
+          v-model.trim="updatedTitle"
+          ref="titleInput"
         />
       </div>
       <textarea
-        v-model.trim="noteText"
+        ref="editTextarea"
+        v-model.trim="updatedNote"
         name="note"
         id="note"
         cols="30"
         rows="10"
-        :placeholder="textAreaPlaceHolder"
       ></textarea>
       <p v-if="errorMessage" class="errorMsg">{{ errorMessage }}</p>
-      <button @click="saveNote">{{ saveButtonText }}</button>
-      <button id="close" @click="closeModal">{{ closeButtonText }}</button>
+      <button v-on:click="saveEdit()">Save Note</button>
+      <button v-on:click="cancelEditModal()" id="close">Cancel</button>
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref, defineEmits } from "vue";
-const noteText = ref("");
-const titleText = ref("");
-const errorMessage = ref("");
-const title = ref("New Note");
-const textAreaPlaceHolder = ref("Enter note...");
-const inputAreaPlaceHolder = ref("Enter title...");
-const saveButtonText = ref("Add Note");
-const closeButtonText = ref("Close");
-const emit = defineEmits("add-note", "close");
+const emit = defineEmits(["close", "updateNote"]);
 
-function saveNote() {
-  if (titleText.value.length < 3) {
-    errorMessage.value = "Title must be minimum of 3 characters or more!";
-    return;
-  } else if (noteText.value.length < 5) {
-    errorMessage.value = "Note must be minimum of 5 characters or more!";
-    return;
-  }
-  const newNote = {
-    id: Math.floor(Math.random() * 10000000),
-    title: titleText.value,
-    text: noteText.value,
-    date: new Date(),
-    backgroundColor: getRandomColor(),
-  };
-  errorMessage.value = "";
-  noteText.value = "";
-  titleText.value = "";
-  emit("add-note", newNote);
-}
+const props = defineProps({
+  modifiedNote: {
+    type: String,
+    required: true,
+  },
+  modifiedTitle: {
+    type: String,
+    required: true,
+  },
+});
 
-function closeModal() {
-  noteText.value = "";
-  titleText.value = "";
-  errorMessage.value = "";
+function cancelEditModal() {
+  updatedNote.value = "";
+  updatedTitle.value = "";
   emit("close");
 }
 
-function getRandomColor() {
-  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+function saveEdit() {
+  emit("updateNote", { note: updatedNote.value, title: updatedTitle.value });
+  emit("close");
 }
-</script>
 
+const updatedNote = ref(props.modifiedNote);
+const updatedTitle = ref(props.modifiedTitle);
+</script>
 <style scoped>
-.title-input {
-  border: 1px solid black;
-  margin-bottom: 10px;
-  width: 100%;
-}
 .overlay {
   position: absolute;
   width: 100%;
@@ -86,6 +64,11 @@ function getRandomColor() {
   align-items: center;
   justify-content: center;
 }
+.title-input {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  width: 100%;
+}
 .modalTitle {
   margin-top: -15px;
   margin-bottom: 15px;
@@ -93,10 +76,6 @@ function getRandomColor() {
   font-family: "Nunito", Verdana, sans-serif;
   font-size: 25px;
   font-weight: bold;
-}
-.title-input:focus {
-  outline: none;
-  border: 2px solid #106de6;
 }
 .modal {
   width: 450px;

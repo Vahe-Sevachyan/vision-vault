@@ -10,11 +10,7 @@
     <!--No styles for text-container -->
     <div class="text-container">
       <p class="main-text">{{ note.text }}</p>
-      <button class="toggle-button" @click="toggleCard">
-        <span v-if="!isCardExpanded">&#9660;</span>
-        <span v-else>&#9650;</span>
-        Toggle
-      </button>
+      <button></button>
     </div>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
   </div>
@@ -53,8 +49,7 @@ function deleteNote() {
   justify-content: space-between;
   margin: 15px 15px 15px 0;
   border: 1px solid white;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
+
   /* transition: transform 1.3s ease; */
   /* border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;
