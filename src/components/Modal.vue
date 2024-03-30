@@ -38,19 +38,27 @@ const closeButtonText = ref("Close");
 const emit = defineEmits("add-note", "close");
 
 function saveNote() {
-  if (titleText.value.length < 3) {
+  if (!categoryName) {
+    errorMessage.value = "Please choose a category";
+    return;
+  } else if (titleText.value.length < 3) {
     errorMessage.value = "Title must be minimum of 3 characters or more!";
     return;
   } else if (noteText.value.length < 5) {
     errorMessage.value = "Note must be minimum of 5 characters or more!";
     return;
   }
+
   const newNote = {
+    categoryName: categoryName,
     id: Math.floor(Math.random() * 10000000),
-    title: titleText.value,
-    text: noteText.value,
-    date: new Date(),
-    backgroundColor: getRandomColor(),
+    data: {
+      id: Math.floor(Math.random() * 10000000),
+      title: titleText.value,
+      text: noteText.value,
+      date: new Date(),
+      backgroundColor: getRandomColor(),
+    },
   };
   errorMessage.value = "";
   noteText.value = "";

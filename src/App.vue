@@ -53,13 +53,6 @@ function editNoteHandler(note) {
   selectedNote.value = note;
 }
 
-// function saveTitle(updatedTitle) {
-//   if (selectedNote.value) {
-//     selectedNote.value.title = updatedTitle;
-//     console.log(selectedNote.value.title);
-//   }
-// }
-
 function saveEdit({ note, title }) {
   if (selectedNote.value) {
     selectedNote.value.text = note;
@@ -68,14 +61,6 @@ function saveEdit({ note, title }) {
     selectedNote.value = null;
   }
 }
-
-// function saveEdit(updatedNote) {
-//   if (selectedNote.value) {
-//     selectedNote.value.text = updatedNote;
-//     editNote.value = false;
-//     selectedNote.value = null;
-//   }
-// }
 
 function closeModal() {
   showModal.value = false;
@@ -93,10 +78,6 @@ function deleteNoteHandler(index) {
   }
   // notes.value.splice(index, 1);
 }
-// function editNoteHandler(note) {
-//   showModal.value = true;
-//   // Handle edit note logic
-// }
 </script>
 
 <style scoped>
@@ -105,7 +86,7 @@ main {
   width: 100vw;
 }
 .container {
-  max-width: 1700px;
+  max-width: 1560px;
   padding: 10px;
   margin: 0 auto;
 }
@@ -119,10 +100,10 @@ header {
 .card-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   /* justify-content: flex-start; */
-  /* border: 1px solid red; */
-  align-items: center;
+  border: 1px solid red;
+  /* align-items: center; */
 }
 h1 {
   color: white;
@@ -158,3 +139,9 @@ header button:hover {
   cursor: pointer;
 }
 </style>
+// function editNoteHandler(note) { // showModal.value = true; // // Handle edit
+note logic // } // function saveEdit(updatedNote) { // if (selectedNote.value) {
+// selectedNote.value.text = updatedNote; // editNote.value = false; //
+selectedNote.value = null; // } // } // function saveTitle(updatedTitle) { // if
+(selectedNote.value) { // selectedNote.value.title = updatedTitle; //
+console.log(selectedNote.value.title); // } // }
