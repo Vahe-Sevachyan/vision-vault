@@ -21,6 +21,7 @@
           :note="note"
           @edit-note="editNoteHandler(note)"
           @delete-note="deleteNoteHandler(index)"
+          @toggle-card="toggleCardHandler(index)"
         />
       </div>
     </div>
@@ -70,7 +71,9 @@ function cancelEditModal() {
   editNote.value = false;
   selectedNote.value = null;
 }
-
+function toggleCardHandler() {
+  isCardExpanded.value = true;
+}
 function deleteNoteHandler(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);

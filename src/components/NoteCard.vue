@@ -1,5 +1,8 @@
 <template>
-  <div class="card" :style="{ backgroundColor: note.backgroundColor }">
+  <div
+    :class="['card', { expanded: isCardExpanded }]"
+    :style="{ backgroundColor: note.backgroundColor }"
+  >
     <div class="card-title-container">
       <p>{{ note.title }}</p>
       <ul class="editBtn-container">
@@ -10,12 +13,12 @@
     <!--No styles for text-container -->
     <div class="text-container">
       <p class="main-text">{{ note.text }}</p>
-      <button class="toggle-button" @click="toggleCard">
-        <span v-if="!isCardExpanded">&#9660;</span>
-        <span v-else>&#9650;</span>
-        Toggle
-      </button>
     </div>
+    <button class="toggle-button" @click="toggleCard">
+      <span v-if="!isCardExpanded">&#9660;</span>
+      <span v-else>&#9650;</span>
+      <!-- Toggle -->
+    </button>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
   </div>
 </template>
@@ -23,11 +26,15 @@
 <script setup>
 import { ref, defineProps } from "vue";
 const emit = defineEmits("edit-note", "delete-note");
+const isCardExpanded = ref(false);
 const props = defineProps({
   note: Object,
 });
 const note = ref(props.note);
-
+function toggleCard() {
+  isCardExpanded.value = !isCardExpanded.value;
+  emit("toggle-card", isCardExpanded.value);
+}
 function editNote() {
   emit("edit-note", note.value);
 }
@@ -43,9 +50,25 @@ function deleteNote() {
   flex-wrap: wrap;
   width: 1000px;
 } */
+
+.toggle-button {
+  width: 50%;
+  padding: 10px;
+  border-radius: 15px;
+  height: 10px;
+  border: none;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 15px;
+  margin: auto;
+  cursor: pointer;
+}
 .card {
   width: 240px;
-  height: 285px;
+  height: 155px;
   padding: 10px;
   border-radius: 15px;
   display: flex;
@@ -66,6 +89,9 @@ function deleteNote() {
   transform: translateX(-100%);
 } */
 
+.card.expanded {
+  height: auto;
+}
 .card-title-container {
   display: flex;
   justify-content: space-between;
@@ -78,8 +104,8 @@ function deleteNote() {
 }
 .text-container {
   width: 210px;
-  height: 200px;
-  overflow-y: auto;
+  height: 300px;
+  /* overflow-y: auto; */
   border: 1px solid black;
   word-wrap: break-word;
   /* padding: 0; */
@@ -87,6 +113,7 @@ function deleteNote() {
   /* padding-top: none; */
   margin: auto;
   margin-bottom: 10px;
+  overflow: hidden;
 }
 .date {
   font-family: "Nunito", Verdana, sans-serif;
