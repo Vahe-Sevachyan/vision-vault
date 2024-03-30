@@ -1,15 +1,14 @@
 <template>
-  <!-- :note="updatedNote" --3-->
   <main>
     <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
     <EditModal
       v-if="editNote"
       @close="cancelEditModal"
       @updateNote="saveEdit"
-      @updateTitle="saveTitle"
       :modifiedNote="selectedNote.text"
       :modifiedTitle="selectedNote.title"
     />
+    <!-- @updateTitle="saveTitle" -->
     <div class="container">
       <header>
         <h1>Vision Vault</h1>
@@ -54,20 +53,29 @@ function editNoteHandler(note) {
   selectedNote.value = note;
 }
 
-function saveTitle(updatedTitle) {
+// function saveTitle(updatedTitle) {
+//   if (selectedNote.value) {
+//     selectedNote.value.title = updatedTitle;
+//     console.log(selectedNote.value.title);
+//   }
+// }
+
+function saveEdit({ note, title }) {
   if (selectedNote.value) {
-    selectedNote.value.title = updatedTitle;
+    selectedNote.value.text = note;
+    selectedNote.value.title = title;
+    editNote.value = false;
+    selectedNote.value = null;
   }
 }
 
-function saveEdit(updatedNote) {
-  if (selectedNote.value) {
-    selectedNote.value.text = updatedNote;
-    editNote.value = false;
-    selectedNote.value = null;
-    console.log();
-  }
-}
+// function saveEdit(updatedNote) {
+//   if (selectedNote.value) {
+//     selectedNote.value.text = updatedNote;
+//     editNote.value = false;
+//     selectedNote.value = null;
+//   }
+// }
 
 function closeModal() {
   showModal.value = false;

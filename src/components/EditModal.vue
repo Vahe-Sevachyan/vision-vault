@@ -25,8 +25,8 @@
   </div>
 </template>
 <script setup>
-import { ref, defineProps, defineEmits } from "vue";
-const emit = defineEmits(["close", "updateNote", "updateTitle"]);
+import { ref, defineEmits } from "vue";
+const emit = defineEmits(["close", "updateNote"]);
 
 const props = defineProps({
   modifiedNote: {
@@ -46,10 +46,11 @@ function cancelEditModal() {
 }
 
 function saveEdit() {
-  emit("updateNote", updatedNote.value);
-  emit("updateTitle", updatedTitle.value);
+  emit("updateNote", { note: updatedNote.value, title: updatedTitle.value });
+  //   emit("updateTitle", updatedTitle.value);
   emit("close");
 }
+
 // function saveTitle() {
 //   emit("updateTitle", updatedTitle.value);
 //   emit("close");
