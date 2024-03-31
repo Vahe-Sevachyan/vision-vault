@@ -20,9 +20,9 @@
       :style="{ backgroundColor: note.btnColor }"
     >
       <span v-if="!isCardExpanded"
-        ><img src="../assets/down-arrow.svg" alt="" />
+        ><img src="../assets/arrow-down.svg" alt="" />
       </span>
-      <span v-else> <img src="../assets/up-arrow.svg" alt="" /> </span>
+      <span v-else> <img src="../assets/arrow-up.svg" alt="" /> </span>
       <!-- Toggle -->
     </button>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
@@ -75,6 +75,7 @@ function deleteNote() {
   cursor: pointer;
   /* background-color: rgb(217, 188, 188); */
 }
+
 .card {
   width: 240px;
   height: 185px;
