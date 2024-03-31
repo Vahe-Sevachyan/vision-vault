@@ -51,6 +51,7 @@ function saveNote() {
     text: noteText.value,
     date: new Date(),
     backgroundColor: getRandomColor(),
+    btnColor: getBtnColor(),
   };
   errorMessage.value = "";
   noteText.value = "";
@@ -67,6 +68,9 @@ function closeModal() {
 
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+}
+function getBtnColor() {
+  return "hsl(" + Math.random() * 160 + ", 100%, 75%)";
 }
 </script>
 

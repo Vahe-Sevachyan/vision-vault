@@ -14,9 +14,15 @@
     <div class="text-container">
       <p class="main-text">{{ note.text }}</p>
     </div>
-    <button class="toggle-button" @click="toggleCard">
-      <span v-if="!isCardExpanded">&#9660;</span>
-      <span v-else>&#9650;</span>
+    <button
+      class="toggle-button"
+      @click="toggleCard"
+      :style="{ backgroundColor: note.btnColor }"
+    >
+      <span v-if="!isCardExpanded"
+        ><img src="../assets/down-arrow.svg" alt="" />
+      </span>
+      <span v-else> <img src="../assets/up-arrow.svg" alt="" /> </span>
       <!-- Toggle -->
     </button>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
@@ -31,10 +37,12 @@ const props = defineProps({
   note: Object,
 });
 const note = ref(props.note);
+
 function toggleCard() {
   isCardExpanded.value = !isCardExpanded.value;
   emit("toggle-card", isCardExpanded.value);
 }
+
 function editNote() {
   emit("edit-note", note.value);
 }
@@ -57,7 +65,7 @@ function deleteNote() {
   border-radius: 15px;
   height: 10px;
   border: none;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,10 +73,11 @@ function deleteNote() {
   margin-bottom: 15px;
   margin: auto;
   cursor: pointer;
+  /* background-color: rgb(217, 188, 188); */
 }
 .card {
   width: 240px;
-  height: 155px;
+  height: 185px;
   padding: 10px;
   border-radius: 15px;
   display: flex;
@@ -78,16 +87,7 @@ function deleteNote() {
   border: 1px solid white;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-  /* transition: transform 1.3s ease; */
-  /* border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(15px); */
 }
-/* .card.removing {
-  transform: translateX(-100%);
-} */
 
 .card.expanded {
   height: auto;
@@ -102,15 +102,14 @@ function deleteNote() {
   border: 1px solid black;
   margin: auto;
 }
+
 .text-container {
   width: 210px;
   height: 300px;
   /* overflow-y: auto; */
   border: 1px solid black;
   word-wrap: break-word;
-  /* padding: 0; */
   margin-bottom: 7px;
-  /* padding-top: none; */
   margin: auto;
   margin-bottom: 10px;
   overflow: hidden;
@@ -119,10 +118,6 @@ function deleteNote() {
   font-family: "Nunito", Verdana, sans-serif;
   font-size: 13px;
   text-align: center;
-
-  /* height: 5px;
-  position: relative;
-  top: -6px; */
 }
 
 .card-title-container p {

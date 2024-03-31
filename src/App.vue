@@ -39,8 +39,14 @@ const selectedNote = ref(null);
 const editNote = ref(false);
 // const selectedTitle = ref(null);
 // const updatedNote = ref("");
+const isCardExpanded = ref(false);
 function toggleModal() {
   showModal.value = true;
+}
+
+//duplicate this function
+function toggleCardHandler() {
+  isCardExpanded.value = true;
 }
 
 function addNote(newNote) {
@@ -71,9 +77,7 @@ function cancelEditModal() {
   editNote.value = false;
   selectedNote.value = null;
 }
-function toggleCardHandler() {
-  isCardExpanded.value = true;
-}
+
 function deleteNoteHandler(index) {
   if (index !== -1) {
     notes.value.splice(index, 1);
