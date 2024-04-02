@@ -19,10 +19,10 @@
       @click="toggleCard"
       :style="{ backgroundColor: note.btnColor }"
     >
-      <span v-if="!isCardExpanded"
-        ><img src="../assets/arrow-down.svg" alt="" />
-      </span>
-      <span v-else> <img src="../assets/arrow-up.svg" alt="" /> </span>
+      <span v-if="!isCardExpanded">
+        <img src="../assets/arrow-down.svg" alt=""
+      /></span>
+      <span v-else> <img src="../assets/arrow-up.svg" alt="" /></span>
       <!-- Toggle -->
     </button>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
@@ -60,12 +60,11 @@ function deleteNote() {
 } */
 
 .toggle-button {
-  width: 50%;
-  padding: 10px;
+  width: 30%;
+  /* height: 70px; */
+  /* padding: 16px; */
   border-radius: 15px;
-  height: 10px;
   border: none;
-  /* background-color: #ffffff; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,9 +72,12 @@ function deleteNote() {
   margin-bottom: 15px;
   margin: auto;
   cursor: pointer;
-  /* background-color: rgb(217, 188, 188); */
 }
-
+span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card {
   width: 240px;
   height: 185px;

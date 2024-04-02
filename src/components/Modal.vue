@@ -70,7 +70,7 @@ function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 function getBtnColor() {
-  return "hsl(" + Math.random() * 160 + ", 100%, 75%)";
+  return "hsl(" + Math.random() * 260 + ", 100%, 75%)";
 }
 </script>
 
