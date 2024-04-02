@@ -86,28 +86,20 @@ function deleteNoteHandler(index) {
 </script>
 
 <style scoped>
-.note-card {
-  margin: auto;
-}
 .container {
   max-width: 330px;
   padding: 10px;
   /* margin: 0 auto; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  /* align-items: center; */
   border: 1px solid red;
 }
+.note-card {
+  margin: auto;
+}
 .card-wrapper {
-  align-items: center;
   display: flex;
-  border: 1px solid red;
   flex-direction: column;
-  /* justify-content: center; */
-  /* flex-wrap: wrap;
-  justify-content: flex-start; */
   /* justify-content: flex-start; */
+  border: 1px solid red;
   /* align-items: center; */
 }
 

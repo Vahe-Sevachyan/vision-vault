@@ -93,20 +93,13 @@ function deleteNoteHandler(index) {
   max-width: 330px;
   padding: 10px;
   /* margin: 0 auto; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  /* align-items: center; */
   border: 1px solid red;
 }
 .card-wrapper {
-  align-items: center;
+  /* align-items: center; */
   display: flex;
-  border: 1px solid red;
   flex-direction: column;
-  /* justify-content: center; */
-  /* flex-wrap: wrap;
-  justify-content: flex-start; */
+  border: 1px solid red;
   /* justify-content: flex-start; */
   /* align-items: center; */
 }
