@@ -95,12 +95,18 @@ function deleteNoteHandler(index) {
   display: flex;
 }
 .note-card {
-  margin: auto;
+  /* margin: auto; */
+  margin-bottom: 5px;
 }
 .container {
-  max-width: 330px;
-  padding: 10px;
-  /* margin: 0 auto; */
+  width: 280px;
+  /* padding: 10px; */
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px;
+  transition: height 1.3s ease-in-out;
+  /* margin: auto; */
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
@@ -108,18 +114,25 @@ function deleteNoteHandler(index) {
   border: 1px solid red;
 }
 .card-wrapper {
-  align-items: center;
+  /* align-items: center; */
   display: flex;
-  border: 1px solid red;
   flex-direction: column;
-  /* justify-content: center; */
+  border: 1px solid red;
+  width: 250px;
+  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   /* flex-wrap: wrap;
   justify-content: flex-start; */
   /* justify-content: flex-start; */
   /* align-items: center; */
 }
+/* button {
+  margin: auto;
 
-header button {
+} */
+button {
   background-image: linear-gradient(
     to right,
     #1a2980 0%,
@@ -128,7 +141,7 @@ header button {
   );
   border: none;
   margin: 10px;
-  padding: 15px 45px;
+  padding: 10px 35px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -137,9 +150,12 @@ header button {
   /* box-shadow: 0 0 0px; */
   border-radius: 10px;
   display: block;
+
+  margin: auto;
+  /* margin: 5px 0 5px 0; */
 }
 
-header button:hover {
+button:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;

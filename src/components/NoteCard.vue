@@ -86,10 +86,10 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 15px 15px 15px 0;
-  border: 1px solid white;
+  /* margin: 15px 15px 15px 0; */
+  /* border: 1px solid white; */
   overflow: hidden;
-  transition: height 0.3s ease-in-out;
+  transition: height 4.3s ease-in-out;
 }
 
 .card.expanded {

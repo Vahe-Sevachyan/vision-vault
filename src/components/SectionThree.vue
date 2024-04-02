@@ -88,12 +88,16 @@ function deleteNoteHandler(index) {
 <style scoped>
 .note-card {
   margin: auto;
+  margin-bottom: 5px;
 }
 .container {
   max-width: 330px;
   padding: 10px;
   /* margin: 0 auto; */
   border: 1px solid red;
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .card-wrapper {
   /* align-items: center; */

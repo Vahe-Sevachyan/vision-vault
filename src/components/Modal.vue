@@ -80,24 +80,6 @@ function getBtnColor() {
   margin-bottom: 10px;
   width: 100%;
 }
-.modal {
-  width: 450px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
-  /* position: relative; */
-  display: flex;
-  flex-direction: column;
-  /* new */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* Adjust width and height as needed */
-  /* width: 400px;
-  height: 200px; */
-}
-
 .overlay {
   position: absolute;
   width: 450px;
@@ -122,6 +104,24 @@ function getBtnColor() {
   width: 100%;
   height: 100%; */
 }
+.modal {
+  width: 450px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  /* new */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Adjust width and height as needed */
+  /* width: 400px;
+  height: 200px; */
+}
+
 .modalTitle {
   margin-top: -15px;
   margin-bottom: 15px;

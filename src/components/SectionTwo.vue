@@ -91,9 +91,13 @@ function deleteNoteHandler(index) {
   padding: 10px;
   /* margin: 0 auto; */
   border: 1px solid red;
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .note-card {
   margin: auto;
+  margin-bottom: 5px;
 }
 .card-wrapper {
   display: flex;
