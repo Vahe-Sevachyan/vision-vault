@@ -63,15 +63,15 @@ function deleteNote() {
   width: 30%;
   /* height: 70px; */
   /* padding: 16px; */
-  border-radius: 15px;
+  border-radius: 5px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 15px;
   margin: auto;
   cursor: pointer;
+  margin-bottom: 4.5px;
 }
 span {
   display: flex;
@@ -79,7 +79,7 @@ span {
   justify-content: center;
 }
 .card {
-  width: 240px;
+  width: 230px;
   height: 185px;
   padding: 10px;
   border-radius: 15px;
@@ -91,6 +91,7 @@ span {
   /* border: 1px solid white; */
   overflow: hidden;
   transition: height 4.3s ease-in-out;
+  margin: 4px 0 4px 0;
 }
 
 .card.expanded {
@@ -101,22 +102,31 @@ span {
   justify-content: space-between;
   align-items: center;
   padding-top: 5px;
-  width: 210px;
+  width: 200px;
+  font-size: 19px;
+  font-family: Tahoma, Geneva, sans-serif;
+  letter-spacing: 1px;
   /* height: 30px; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: auto;
+  margin-bottom: 5px;
 }
 
 .text-container {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 210px;
   height: 300px;
+  letter-spacing: 0.3px;
   /* overflow-y: auto; */
-  border: 1px solid black;
+  border: 2px solid black;
   word-wrap: break-word;
   margin-bottom: 7px;
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   overflow: hidden;
+  border-radius: 10px;
+  padding: 3px;
+  font-size: 14px;
 }
 .date {
   font-family: "Nunito", Verdana, sans-serif;

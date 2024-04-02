@@ -47,8 +47,8 @@ function saveNote() {
   }
   const newNote = {
     id: Math.floor(Math.random() * 10000000),
-    title: titleText.value,
-    text: noteText.value,
+    title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
+    text: noteText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
     date: new Date(),
     backgroundColor: getRandomColor(),
     btnColor: getBtnColor(),

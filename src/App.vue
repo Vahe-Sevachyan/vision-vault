@@ -47,10 +47,9 @@ h1 {
   font-size: 35px;
 }
 </style>
---> // function editNoteHandler(note) { // showModal.value = true; // // Handle
-edit note logic // } // function saveEdit(updatedNote) { // if
-(selectedNote.value) { // selectedNote.value.text = updatedNote; //
-editNote.value = false; // selectedNote.value = null; // } // } // function
-saveTitle(updatedTitle) { // if (selectedNote.value) { //
-selectedNote.value.title = updatedTitle; //
+// function editNoteHandler(note) { // showModal.value = true; // // Handle edit
+note logic // } // function saveEdit(updatedNote) { // if (selectedNote.value) {
+// selectedNote.value.text = updatedNote; // editNote.value = false; //
+selectedNote.value = null; // } // } // function saveTitle(updatedTitle) { // if
+(selectedNote.value) { // selectedNote.value.title = updatedTitle; //
 console.log(selectedNote.value.title); // } // }

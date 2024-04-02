@@ -65,8 +65,12 @@ function editNoteHandler(note) {
 
 function saveEdit({ note, title }) {
   if (selectedNote.value) {
-    selectedNote.value.text = note;
-    selectedNote.value.title = title;
+    selectedNote.value.text = note.replace(/\b\w/g, (char) =>
+      char.toUpperCase()
+    );
+    selectedNote.value.title = title.replace(/\b\w/g, (char) =>
+      char.toUpperCase()
+    );
     editNote.value = false;
     selectedNote.value = null;
   }
@@ -95,45 +99,44 @@ function deleteNoteHandler(index) {
   display: flex;
 }
 .note-card {
-  /* margin: auto; */
   margin-bottom: 5px;
 }
 .container {
   width: 280px;
-  /* padding: 10px; */
   max-height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
-  /* padding-right: 12px; */
   transition: height 1.3s ease-in-out;
   scrollbar-gutter: stable both-edges;
+  border: 1px solid red;
+  padding-top: 5px;
+  /* padding-right: 12px; */
+  /* padding: 10px; */
   /* margin: auto; */
   /* display: flex;
   flex-direction: column;
   justify-content: center; */
   /* align-items: center; */
-  border: 1px solid red;
 }
 
 .card-wrapper {
-  /* align-items: center; */
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
   width: 250px;
-  /* align-items: center; */
   justify-content: center;
   align-items: center;
   margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* align-items: center; */
+  /* border: 1px solid red; */
+  /* align-items: center; */
   /* flex-wrap: wrap;
   justify-content: flex-start; */
   /* justify-content: flex-start; */
   /* align-items: center; */
 }
-/* button {
-  margin: auto;
 
-} */
 button {
   background-image: linear-gradient(
     to right,
@@ -153,6 +156,7 @@ button {
   border-radius: 10px;
   display: block;
   margin: auto;
+  /* margin: 5px; */
   /* margin: 5px 0 5px 0; */
 }
 
