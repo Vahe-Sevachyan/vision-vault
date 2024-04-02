@@ -55,14 +55,48 @@ const updatedTitle = ref(props.modifiedTitle);
 </script>
 <style scoped>
 .overlay {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.77);
   z-index: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  /* new */
+
+  position: absolute;
+  width: 450px;
+  height: 50%;
+  /* background-color: rgba(0, 0, 0, 0.77); */
+  z-index: 10px;
+  height: auto;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal {
+  /* width: 450px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column; */
+  /* new */
+  width: 450px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  /* new */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .title-input {
   border: 1px solid black;
@@ -76,15 +110,6 @@ const updatedTitle = ref(props.modifiedTitle);
   font-family: "Nunito", Verdana, sans-serif;
   font-size: 25px;
   font-weight: bold;
-}
-.modal {
-  width: 450px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 .modal button {
