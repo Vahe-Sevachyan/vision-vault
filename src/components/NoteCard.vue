@@ -86,7 +86,8 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* margin: 15px 15px 15px 0; */
+  margin: 15px 15px 15px 0;
+  margin: auto;
   /* border: 1px solid white; */
   overflow: hidden;
   transition: height 4.3s ease-in-out;

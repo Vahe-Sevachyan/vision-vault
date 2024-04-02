@@ -104,8 +104,9 @@ function deleteNoteHandler(index) {
   max-height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 12px;
+  /* padding-right: 12px; */
   transition: height 1.3s ease-in-out;
+  scrollbar-gutter: stable both-edges;
   /* margin: auto; */
   /* display: flex;
   flex-direction: column;
@@ -113,11 +114,12 @@ function deleteNoteHandler(index) {
   /* align-items: center; */
   border: 1px solid red;
 }
+
 .card-wrapper {
   /* align-items: center; */
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 250px;
   /* align-items: center; */
   justify-content: center;
@@ -150,7 +152,6 @@ button {
   /* box-shadow: 0 0 0px; */
   border-radius: 10px;
   display: block;
-
   margin: auto;
   /* margin: 5px 0 5px 0; */
 }
