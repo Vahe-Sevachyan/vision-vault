@@ -3,10 +3,12 @@
     <header>
       <h1>Vision Vault</h1>
     </header>
-    <SectionOne />
-    <SectionTwo />
-    <SectionThree />
-    <SectionFour />
+    <div class="container">
+      <SectionOne />
+      <SectionTwo />
+      <SectionThree />
+      <SectionFour />
+    </div>
   </main>
 </template>
 
@@ -18,6 +20,13 @@ import SectionFour from "./components/SectionFour.vue";
 </script>
 
 <style scoped>
+.container {
+  max-width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+}
 main {
   height: 100vh;
   width: 100vw;
@@ -38,9 +47,10 @@ h1 {
   font-size: 35px;
 }
 </style>
-// function editNoteHandler(note) { // showModal.value = true; // // Handle edit
-note logic // } // function saveEdit(updatedNote) { // if (selectedNote.value) {
-// selectedNote.value.text = updatedNote; // editNote.value = false; //
-selectedNote.value = null; // } // } // function saveTitle(updatedTitle) { // if
-(selectedNote.value) { // selectedNote.value.title = updatedTitle; //
+--> // function editNoteHandler(note) { // showModal.value = true; // // Handle
+edit note logic // } // function saveEdit(updatedNote) { // if
+(selectedNote.value) { // selectedNote.value.text = updatedNote; //
+editNote.value = false; // selectedNote.value = null; // } // } // function
+saveTitle(updatedTitle) { // if (selectedNote.value) { //
+selectedNote.value.title = updatedTitle; //
 console.log(selectedNote.value.title); // } // }

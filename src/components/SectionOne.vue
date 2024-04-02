@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
+    <Modal
+      v-if="showModal"
+      @close="closeModal"
+      @add-note="addNote"
+      class="modal"
+    />
     <EditModal
       v-if="editNote"
       @close="cancelEditModal"
@@ -86,6 +91,9 @@ function deleteNoteHandler(index) {
 </script>
 
 <style scoped>
+.modal {
+  display: flex;
+}
 .note-card {
   margin: auto;
 }

@@ -11,7 +11,6 @@
     <!-- @updateTitle="saveTitle" -->
     <div class="container">
       <button @click="toggleModal()">Create Note</button>
-
       <div class="card-wrapper">
         <NoteCard
           v-for="(note, index) in notes"
@@ -94,6 +93,7 @@ function deleteNoteHandler(index) {
   padding: 10px;
   /* margin: 0 auto; */
 }
+
 .card-wrapper {
   align-items: center;
   display: flex;
