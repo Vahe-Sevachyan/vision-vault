@@ -65,9 +65,7 @@ function editNoteHandler(note) {
 
 function saveEdit({ note, title }) {
   if (selectedNote.value) {
-    selectedNote.value.text = note.replace(/\b\w/g, (char) =>
-      char.toUpperCase()
-    );
+    selectedNote.value.text = note;
     selectedNote.value.title = title.replace(/\b\w/g, (char) =>
       char.toUpperCase()
     );

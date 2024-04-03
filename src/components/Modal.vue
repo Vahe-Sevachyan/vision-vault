@@ -41,6 +41,9 @@ function saveNote() {
   if (titleText.value.length < 3) {
     errorMessage.value = "Title must be minimum of 3 characters or more!";
     return;
+  } else if (titleText.value.length > 13) {
+    errorMessage.value = "Title cant be more than 13 characters";
+    return;
   } else if (noteText.value.length < 5) {
     errorMessage.value = "Note must be minimum of 5 characters or more!";
     return;
@@ -48,7 +51,7 @@ function saveNote() {
   const newNote = {
     id: Math.floor(Math.random() * 10000000),
     title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
-    text: noteText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
+    text: noteText.value,
     date: new Date(),
     backgroundColor: getRandomColor(),
     btnColor: getBtnColor(),

@@ -27,7 +27,7 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 const emit = defineEmits(["close", "updateNote"]);
-
+const errorMessage = ref("");
 const props = defineProps({
   modifiedNote: {
     type: String,
@@ -46,6 +46,12 @@ function cancelEditModal() {
 }
 
 function saveEdit() {
+  if (updatedTitle.value.length < 3) {
+    return (errorMessage.value =
+      "Title must be minimum of 3 characters or more!");
+  } else if (updatedTitle.value.length > 13) {
+    return (errorMessage.value = "Title cant be more than 13 characters");
+  }
   emit("updateNote", { note: updatedNote.value, title: updatedTitle.value });
   emit("close");
 }
