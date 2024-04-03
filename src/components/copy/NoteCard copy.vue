@@ -49,7 +49,6 @@ function deleteNote() {
   justify-content: space-between;
   margin: 15px 15px 15px 0;
   border: 1px solid white;
-
   /* transition: transform 1.3s ease; */
   /* border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;

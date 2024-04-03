@@ -124,7 +124,7 @@ span {
   margin: auto;
   margin-bottom: 8px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 3px;
   font-size: 14px;
 }

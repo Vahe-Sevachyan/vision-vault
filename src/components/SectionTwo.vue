@@ -1,6 +1,11 @@
 <template>
   <div>
-    <Modal v-if="showModal" @close="closeModal" @add-note="addNote" />
+    <Modal
+      v-if="showModal"
+      @close="closeModal"
+      @add-note="addNote"
+      class="modal"
+    />
     <EditModal
       v-if="editNote"
       @close="cancelEditModal"
@@ -8,7 +13,7 @@
       :modifiedNote="selectedNote.text"
       :modifiedTitle="selectedNote.title"
     />
-    <!-- @updateTitle="saveTitle" -->
+
     <div class="container">
       <button @click="toggleModal()">Create Note</button>
 
@@ -61,7 +66,9 @@ function editNoteHandler(note) {
 function saveEdit({ note, title }) {
   if (selectedNote.value) {
     selectedNote.value.text = note;
-    selectedNote.value.title = title;
+    selectedNote.value.title = title.replace(/\b\w/g, (char) =>
+      char.toUpperCase()
+    );
     editNote.value = false;
     selectedNote.value = null;
   }
@@ -86,28 +93,36 @@ function deleteNoteHandler(index) {
 </script>
 
 <style scoped>
+.modal {
+  display: flex;
+}
+.note-card {
+  margin-bottom: 5px;
+}
 .container {
-  max-width: 330px;
-  padding: 10px;
-  /* margin: 0 auto; */
-  border: 1px solid red;
+  width: 280px;
   max-height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: height 1.3s ease-in-out;
+  scrollbar-gutter: stable both-edges;
+  border: 1px solid red;
+  padding-top: 5px;
 }
-.note-card {
-  margin: auto;
-  margin-bottom: 5px;
-}
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
+  width: 250px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border: 1px solid red;
-  /* align-items: center; */
 }
 
-header button {
+button {
   background-image: linear-gradient(
     to right,
     #1a2980 0%,
@@ -116,7 +131,7 @@ header button {
   );
   border: none;
   margin: 10px;
-  padding: 15px 45px;
+  padding: 10px 35px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -125,9 +140,12 @@ header button {
   /* box-shadow: 0 0 0px; */
   border-radius: 10px;
   display: block;
+  margin: auto;
+  /* margin: 5px; */
+  /* margin: 5px 0 5px 0; */
 }
 
-header button:hover {
+button:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
   text-decoration: none;
