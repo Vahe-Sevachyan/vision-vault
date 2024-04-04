@@ -14,17 +14,20 @@
     <div class="text-container">
       <p class="main-text">{{ note.text }}</p>
     </div>
-    <button
-      class="toggle-button"
-      @click="toggleCard"
-      :style="{ backgroundColor: note.btnColor }"
-    >
-      <span v-if="!isCardExpanded">
-        <img src="../assets/arrow-down.svg" alt=""
-      /></span>
-      <span v-else> <img src="../assets/arrow-up.svg" alt="" /></span>
-      <!-- Toggle -->
-    </button>
+    <div class="btn-container">
+      <button
+        class="toggle-card-size-btn"
+        @click="toggleCardSize"
+        :style="{ backgroundColor: note.btnColor }"
+      >
+        <span v-if="!isCardExpanded">
+          <img src="../assets/arrow-down.svg" alt=""
+        /></span>
+        <span v-else> <img src="../assets/arrow-up.svg" alt="" /></span>
+        <!-- Toggle -->
+      </button>
+      <button class="toggle-text-hide-btn">{{ isTextShowing }}</button>
+    </div>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
   </div>
 </template>
@@ -33,14 +36,15 @@
 import { ref, defineProps } from "vue";
 const emit = defineEmits("edit-note", "delete-note");
 const isCardExpanded = ref(false);
+const isTextShowing = ref("Show Text");
 const props = defineProps({
   note: Object,
 });
 const note = ref(props.note);
 
-function toggleCard() {
+function toggleCardSize() {
   isCardExpanded.value = !isCardExpanded.value;
-  emit("toggle-card", isCardExpanded.value);
+  emit("toggle-card-size", isCardExpanded.value);
 }
 
 function editNote() {
@@ -59,20 +63,41 @@ function deleteNote() {
   width: 1000px;
 } */
 
-.toggle-button {
-  width: 30%;
-  /* height: 70px; */
-  /* padding: 16px; */
+.toggle-card-size-btn {
+  width: 60px;
   border-radius: 5px;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto;
   cursor: pointer;
   margin-bottom: 4.5px;
+  /* width: 30%; */
+  /* height: 70px; */
+  /* padding: 16px; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+  /* margin: auto; */
 }
+.toggle-text-hide-btn {
+  width: 80px;
+  font-family: Tahoma, sans-serif;
+  border-radius: 5px;
+  margin-bottom: 4.5px;
+  font-size: 13.5px;
+}
+.btn-container {
+  /* display: flex; */
+  width: 210px;
+  display: flex;
+  justify-content: space-evenly;
+
+  /* align-items: center; */
+  /* border: 1px solid red; */
+}
+/* .btn-container button {
+  margin: auto;
+  border: 1px solid red;
+} */
 span {
   display: flex;
   align-items: center;

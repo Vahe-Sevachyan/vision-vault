@@ -24,7 +24,7 @@
           :note="note"
           @edit-note="editNoteHandler(note)"
           @delete-note="deleteNoteHandler(index)"
-          @toggle-card="toggleCardHandler(index)"
+          @toggle-card-size="toggleCardHandler(index)"
           class="note-card"
         />
       </div>
