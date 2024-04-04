@@ -12,7 +12,8 @@
     </div>
     <!--No styles for text-container -->
     <div class="text-container">
-      <p class="main-text">{{ note.text }}</p>
+      <p v-if="isTextShowing" class="main-text">{{ note.text }}</p>
+      <p v-else>...</p>
     </div>
     <div class="btn-container">
       <button
@@ -26,7 +27,9 @@
         <span v-else> <img src="../assets/arrow-up.svg" alt="" /></span>
         <!-- Toggle -->
       </button>
-      <button class="toggle-text-hide-btn">{{ isTextShowing }}</button>
+      <button class="toggle-text-hide-btn" @click="toggleCardHide">
+        {{ HideBtnText }}
+      </button>
     </div>
     <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
   </div>
@@ -36,15 +39,28 @@
 import { ref, defineProps } from "vue";
 const emit = defineEmits("edit-note", "delete-note");
 const isCardExpanded = ref(false);
-const isTextShowing = ref("Show Text");
+const isTextShowing = ref(false);
+const HideBtnText = ref("Show Text");
 const props = defineProps({
   note: Object,
 });
 const note = ref(props.note);
+// const HideBtnText = computed(() => (state.showText ? "Hide Text" : "Show Text"));
 
 function toggleCardSize() {
   isCardExpanded.value = !isCardExpanded.value;
+
   emit("toggle-card-size", isCardExpanded.value);
+}
+function toggleCardHide() {
+  isTextShowing.value = !isTextShowing.value;
+  console.log(isTextShowing.value);
+  if (isTextShowing.value === true) {
+    HideBtnText.value = "Hide Text";
+  } else if (isTextShowing.value === false) {
+    HideBtnText.value = "Show Text";
+  }
+  emit("toggle-card-hide", isTextShowing.value);
 }
 
 function editNote() {

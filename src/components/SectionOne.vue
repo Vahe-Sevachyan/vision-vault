@@ -24,7 +24,8 @@
           :note="note"
           @edit-note="editNoteHandler(note)"
           @delete-note="deleteNoteHandler(index)"
-          @toggle-card-size="toggleCardHandler(index)"
+          @toggle-card-size="toggleCardSizeHandler(index)"
+          @toggle-card-hide="toggleCardHideHandler(index)"
           class="note-card"
         />
       </div>
@@ -43,12 +44,15 @@ const editNote = ref(false);
 // const selectedTitle = ref(null);
 // const updatedNote = ref("");
 const isCardExpanded = ref(false);
+const isTextShowing = ref(false);
 function toggleModal() {
   showModal.value = true;
 }
-
+function toggleCardHideHandler() {
+  isTextShowing.value = true;
+}
 //duplicate this function
-function toggleCardHandler() {
+function toggleCardSizeHandler() {
   isCardExpanded.value = true;
 }
 
