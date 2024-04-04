@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['card', { expanded: isCardExpanded }]"
-    :style="{ backgroundColor: note.backgroundColor }"
+    :style="{ backgroundImage: note.backgroundColor }"
   >
     <div class="card-title-container">
       <p>{{ note.title }}</p>
@@ -54,7 +54,6 @@ function toggleCardSize() {
 }
 function toggleCardHide() {
   isTextShowing.value = !isTextShowing.value;
-  console.log(isTextShowing.value);
   if (isTextShowing.value === true) {
     HideBtnText.value = "Hide Text";
   } else if (isTextShowing.value === false) {
