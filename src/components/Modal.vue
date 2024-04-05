@@ -75,7 +75,7 @@ function closeModal() {
 function getRandomColor() {
   let angle = Math.floor(Math.random() * 360);
   let gradient = `linear-gradient(${angle}deg,
-        #${colorCode()},
+      
         #${colorCode()},
         #${colorCode()})`;
   return gradient;
@@ -84,7 +84,6 @@ function getRandomColor() {
 function colorCode() {
   let hexCode1 = "";
   let hexValues1 = "0123456789abcdef";
-
   for (let i = 0; i < 6; i++) {
     hexCode1 += hexValues1.charAt(
       Math.floor(Math.random() * hexValues1.length)

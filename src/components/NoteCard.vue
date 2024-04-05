@@ -22,9 +22,12 @@
         :style="{ backgroundColor: note.btnColor }"
       >
         <span v-if="!isCardExpanded">
-          <img src="../assets/arrow-down.svg" alt=""
-        /></span>
-        <span v-else> <img src="../assets/arrow-up.svg" alt="" /></span>
+          <img src="../assets/arrow-down.svg" alt="" />
+          Expand <font-awesome-icon :icon="['fas', 'arrow-up-from-bracket']" />
+        </span>
+        <span v-else>
+          <img src="../assets/arrow-up.svg" alt="" /> Collapse</span
+        >
         <!-- Toggle -->
       </button>
       <button class="toggle-text-hide-btn" @click="toggleCardHide">
@@ -79,11 +82,15 @@ function deleteNote() {
 } */
 
 .toggle-card-size-btn {
-  width: 60px;
+  width: 98px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   margin-bottom: 4.5px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.8rem;
+  /* font-family: "Poppins", sans-serif; */
   /* width: 30%; */
   /* height: 70px; */
   /* padding: 16px; */
@@ -95,7 +102,7 @@ function deleteNote() {
 }
 .toggle-text-hide-btn {
   width: 80px;
-  font-family: Tahoma, sans-serif;
+  font-family: "Poppins", sans-serif;
   border-radius: 5px;
   margin-bottom: 4.5px;
   font-size: 13.5px;
@@ -130,13 +137,14 @@ span {
   margin: auto;
   /* border: 1px solid white; */
   overflow: hidden;
-  transition: height 4.3s ease-in-out;
+  /* transition: height 4.3s ease-in-out; */
   margin: 4px 0 4px 0;
 }
 
 .card.expanded {
   height: auto;
 }
+
 .card-title-container {
   display: flex;
   justify-content: space-between;
@@ -144,8 +152,8 @@ span {
   padding-top: 5px;
   width: 200px;
   font-size: 19px;
-  font-family: Tahoma, Geneva, sans-serif;
-  letter-spacing: 1px;
+  font-family: "Poppins", sans-serif;
+
   /* height: 30px; */
   /* border: 1px solid black; */
   margin: auto;

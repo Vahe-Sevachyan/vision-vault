@@ -108,9 +108,11 @@ function deleteNoteHandler(index) {
   max-height: 800px;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: height 1.3s ease-in-out;
+  /* transition: max-height 5.3s ease-in; */
+  transition: max-height 3.25s ease;
+  transition-duration: 2s;
   scrollbar-gutter: stable both-edges;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding-top: 5px;
 }
 
@@ -123,7 +125,7 @@ function deleteNoteHandler(index) {
   margin: auto;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* align-items: center; */
   /* max-height: 800px;
   overflow-y: auto;
@@ -144,6 +146,7 @@ button {
     #26d0ce 51%,
     #1a2980 100%
   );
+  font-family: Roboto, sans-serif;
   border: none;
   margin: 10px;
   padding: 10px 35px;

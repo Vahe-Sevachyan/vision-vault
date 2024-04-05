@@ -106,7 +106,7 @@ function deleteNoteHandler(index) {
   overflow-x: hidden;
   transition: height 1.3s ease-in-out;
   scrollbar-gutter: stable both-edges;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding-top: 5px;
 }
 
@@ -119,7 +119,7 @@ function deleteNoteHandler(index) {
   margin: auto;
   padding-top: 5px;
   padding-bottom: 5px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   /* align-items: center; */
   /* max-height: 800px;
   overflow-y: auto;
