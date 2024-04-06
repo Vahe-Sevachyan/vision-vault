@@ -69,31 +69,31 @@ function closeModal() {
   emit("close");
 }
 
-// function getRandomColor() {
-//   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
-// }
 function getRandomColor() {
-  let angle = Math.floor(Math.random() * 360);
-  let gradient = `linear-gradient(${angle}deg,
-      
-        #${colorCode()},
-        #${colorCode()})`;
-  return gradient;
-  // return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
-}
-function colorCode() {
-  let hexCode1 = "";
-  let hexValues1 = "0123456789abcdef";
-  for (let i = 0; i < 6; i++) {
-    hexCode1 += hexValues1.charAt(
-      Math.floor(Math.random() * hexValues1.length)
-    );
-  }
-  return hexCode1;
+  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 function getBtnColor() {
-  return "hsl(" + Math.random() * 260 + ", 100%, 75%)";
+  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
+// function getRandomColor() {
+//   let angle = Math.floor(Math.random() * 360);
+//   let gradient = `linear-gradient(${angle}deg,
+
+//         #${colorCode()},
+//         #${colorCode()})`;
+//   return gradient;
+//   // return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+// }
+// function colorCode() {
+//   let hexCode1 = "";
+//   let hexValues1 = "0123456789abcdef";
+//   for (let i = 0; i < 6; i++) {
+//     hexCode1 += hexValues1.charAt(
+//       Math.floor(Math.random() * hexValues1.length)
+//     );
+//   }
+//   return hexCode1;
+// }
 </script>
 
 <style scoped>

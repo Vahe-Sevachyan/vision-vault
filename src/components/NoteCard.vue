@@ -1,8 +1,9 @@
 <template>
   <div
     :class="['card', { expanded: isCardExpanded }]"
-    :style="{ backgroundImage: note.backgroundColor }"
+    :style="{ backgroundColor: note.backgroundColor }"
   >
+    <!-- backgroundImage -->
     <div class="card-title-container">
       <p>{{ note.title }}</p>
       <ul class="editBtn-container">

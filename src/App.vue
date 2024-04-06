@@ -25,8 +25,6 @@ import SectionOne from "./components/SectionOne.vue";
 import SectionTwo from "./components/SectionTwo.vue";
 import SectionThree from "./components/SectionThree.vue";
 import SectionFour from "./components/SectionFour.vue";
-import SectionFive from "./components/SectionFive.vue";
-import SectionSix from "./components/SectionSix.vue";
 </script>
 
 <style scoped>
@@ -43,7 +41,7 @@ main {
 }
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 800px;
   margin: 0 auto;
@@ -55,6 +53,18 @@ h1 {
   font-weight: bold;
   margin-bottom: 25px;
   font-size: 35px;
+}
+@media only screen and (max-width: 1125px) {
+  .container {
+    max-width: 560px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .container {
+    max-width: 330px;
+    justify-content: center;
+    margin: auto;
+  }
 }
 </style>
 // function editNoteHandler(note) { // showModal.value = true; // // Handle edit
