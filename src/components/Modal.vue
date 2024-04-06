@@ -5,6 +5,17 @@
       <div>
         <input
           type="text"
+          class="category-input"
+          :placeholder="categoryInputPlaceHolder"
+          v-model.trim="categoryText"
+        />
+        <select v-model="selectedCategory">
+          <option v-for="note in newNote" :value="note.categoryName">
+            {{ note.categoryName }}
+          </option>
+        </select>
+        <input
+          type="text"
           class="title-input"
           :placeholder="inputAreaPlaceHolder"
           v-model.trim="titleText"
@@ -29,36 +40,59 @@
 import { ref, defineEmits } from "vue";
 const noteText = ref("");
 const titleText = ref("");
+const categoryText = ref("");
 const errorMessage = ref("");
 const title = ref("New Note");
+const categoryInputPlaceHolder = ref("Enter Category Name");
 const textAreaPlaceHolder = ref("Enter note...");
-const inputAreaPlaceHolder = ref("Enter title...");
+const inputAreaPlaceHolder = ref("Enter Note title...");
 const saveButtonText = ref("Add Note");
 const closeButtonText = ref("Close");
 const emit = defineEmits("add-note", "close");
 
+// function saveNote() {
+//   if (titleText.value.length < 3) {
+//     errorMessage.value = "Title must be minimum of 3 characters or more!";
+//     return;
+//   } else if (titleText.value.length > 13) {
+//     errorMessage.value = "Title cant be more than 13 characters";
+//     return;
+//   } else if (noteText.value.length < 5) {
+//     errorMessage.value = "Note must be minimum of 5 characters or more!";
+//     return;
+//   }
+
+//   const newNote = {
+//     id: Math.floor(Math.random() * 10000000),
+//     title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
+//     text: noteText.value,
+//     date: new Date(),
+//     backgroundColor: getRandomColor(),
+//     btnColor: getBtnColor(),
+//   };
+//   errorMessage.value = "";
+//   noteText.value = "";
+//   titleText.value = "";
+//   emit("add-note", newNote);
+// }
+
 function saveNote() {
-  if (titleText.value.length < 3) {
-    errorMessage.value = "Title must be minimum of 3 characters or more!";
-    return;
-  } else if (titleText.value.length > 13) {
-    errorMessage.value = "Title cant be more than 13 characters";
-    return;
-  } else if (noteText.value.length < 5) {
-    errorMessage.value = "Note must be minimum of 5 characters or more!";
-    return;
-  }
   const newNote = {
-    id: Math.floor(Math.random() * 10000000),
-    title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
-    text: noteText.value,
-    date: new Date(),
-    backgroundColor: getRandomColor(),
-    btnColor: getBtnColor(),
+    categoryName: categoryText.value,
+    cards: [
+      {
+        newNote: {
+          id: Math.floor(Math.random() * 10000000),
+          title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
+          text: noteText.value,
+          date: new Date(),
+          backgroundColor: getRandomColor(),
+          btnColor: getBtnColor(),
+        },
+      },
+    ],
   };
-  errorMessage.value = "";
-  noteText.value = "";
-  titleText.value = "";
+  console.log(newNote);
   emit("add-note", newNote);
 }
 
@@ -98,6 +132,11 @@ function getBtnColor() {
 
 <style scoped>
 .title-input {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.category-input {
   border: 1px solid black;
   margin-bottom: 10px;
   width: 100%;
@@ -156,7 +195,10 @@ function getBtnColor() {
   outline: none;
   border: 2px solid #106de6;
 }
-
+.category-input:focus {
+  outline: none;
+  border: 2px solid #106de6;
+}
 .modal button {
   background-image: linear-gradient(
     to right,

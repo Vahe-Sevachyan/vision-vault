@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['card', { expanded: isCardExpanded }]"
-    :style="{ backgroundColor: note.backgroundColor }"
+    :style="{ backgroundColor: note.cards.backgroundColor }"
   >
     <!-- backgroundImage -->
     <div class="card-title-container">
@@ -13,14 +13,14 @@
     </div>
     <!--No styles for text-container -->
     <div class="text-container">
-      <p v-if="isTextShowing" class="main-text">{{ note.text }}</p>
+      <p v-if="isTextShowing" class="main-text">{{ note.cards.text }}</p>
       <p v-else>...</p>
     </div>
     <div class="btn-container">
       <button
         class="toggle-card-size-btn"
         @click="toggleCardSize"
-        :style="{ backgroundColor: note.btnColor }"
+        :style="{ backgroundColor: note.cards.btnColor }"
       >
         <span v-if="!isCardExpanded">
           <img src="../assets/arrow-down.svg" alt="" />
@@ -159,7 +159,18 @@ span {
   margin: auto;
   margin-bottom: 5px;
 }
+.main-text::-webkit-scrollbar {
+  width: 12px; /* Adjust scrollbar width */
+}
 
+.main-text::-webkit-scrollbar-thumb {
+  background-color: #b82020; /* Adjust thumb color */
+  border-radius: 6px; /* Adjust thumb border radius */
+}
+
+.main-text::-webkit-scrollbar-track {
+  background-color: #eee; /* Adjust track color */
+}
 .text-container {
   font-family: "Poppins", Geneva, Tahoma, sans-serif;
   width: 210px;
