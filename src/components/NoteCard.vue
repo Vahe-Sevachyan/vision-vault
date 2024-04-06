@@ -154,7 +154,6 @@ span {
   width: 200px;
   font-size: 19px;
   font-family: "Poppins", sans-serif;
-
   /* height: 30px; */
   /* border: 1px solid black; */
   margin: auto;
@@ -162,20 +161,23 @@ span {
 }
 
 .text-container {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Poppins", Geneva, Tahoma, sans-serif;
   width: 210px;
   height: 300px;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.1px;
   /* overflow-y: auto; */
   border: 2px solid black;
   word-wrap: break-word;
   margin-bottom: 7px;
   margin: auto;
   margin-bottom: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 8px;
   padding: 3px;
   font-size: 14px;
+  overflow-y: auto;
+  /* overflow-x: hidden; */
+  transition: height 1.3s ease-in-out;
 }
 .date {
   font-family: "Nunito", Verdana, sans-serif;
