@@ -49,10 +49,12 @@ header {
 
 h1 {
   color: white;
-  font-family: "Nunito", Verdana, sans-serif;
+  font-family: "Poppins", Verdana, sans-serif;
   font-weight: bold;
+  font-weight: 400;
   margin-bottom: 25px;
-  font-size: 35px;
+  margin-top: 15px;
+  font-size: 45px;
 }
 @media only screen and (max-width: 1125px) {
   .container {

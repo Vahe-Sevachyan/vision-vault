@@ -15,8 +15,8 @@
     />
     <!-- @updateTitle="saveTitle" -->
     <div class="container">
-      <button @click="toggleModal()">Create Note</button>
-
+      <!-- <button @click="toggleModal()">Create Note</button> -->
+      <CreateNoteBtn @create-note-btn="toggleModal()" />
       <div class="card-wrapper">
         <NoteCard
           v-for="(note, index) in notes"
@@ -37,6 +37,7 @@ import { ref } from "vue";
 import Modal from "./Modal.vue";
 import NoteCard from "./NoteCard.vue";
 import EditModal from "./EditModal.vue";
+import CreateNoteBtn from "./CreateNoteBtn.vue";
 const showModal = ref(false);
 const notes = ref([]);
 const selectedNote = ref(null);
@@ -137,36 +138,5 @@ function deleteNoteHandler(index) {
   justify-content: flex-start; */
   /* justify-content: flex-start; */
   /* align-items: center; */
-}
-
-button {
-  background-image: linear-gradient(
-    to right,
-    #1a2980 0%,
-    #26d0ce 51%,
-    #1a2980 100%
-  );
-  font-family: Roboto, sans-serif;
-  border: none;
-  margin: 10px;
-  padding: 10px 35px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  /* box-shadow: 0 0 0px; */
-  border-radius: 10px;
-  display: block;
-  margin: auto;
-  /* margin: 5px; */
-  /* margin: 5px 0 5px 0; */
-}
-
-button:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
 }
 </style>
