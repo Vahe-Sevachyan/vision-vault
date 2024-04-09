@@ -56,14 +56,28 @@ function toggleCardHideHandler() {
 function toggleCardSizeHandler() {
   isCardExpanded.value = true;
 }
-
+// <<<< this logic goes in the addNote function>>>>>>
+// const addCategory = () => {
+//       if (newCategoryName.value && !categories.value.some(category => category.name === newCategoryName.value)) {
+//         categories.value.push({ name: newCategoryName.value, cards: [] });
+//         newCategoryName.value = '';
+//       }
+//     };
+// <<<< this logic goes in the addNote function>>>>>>
 function addNote(newNote) {
+  //   if (notes.includes(newNote.categoryName)) {
+  //     notes.value.push();
+  //   }
+
+  console.log(newNote);
+  console.log(notes[0]);
   notes.value.push(newNote);
   showModal.value = false;
 }
 
 function editNoteHandler(note) {
   // Open the modal for editing
+  //   console.log(notes);
   editNote.value = true;
   selectedNote.value = note;
 }

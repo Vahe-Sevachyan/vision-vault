@@ -35,7 +35,7 @@
         {{ HideBtnText }}
       </button>
     </div>
-    <p class="date">{{ note.date.toLocaleString("en-US") }}</p>
+    <p class="date">{{ note.cards[0].date.toLocaleString("en-US") }}</p>
   </div>
 </template>
 

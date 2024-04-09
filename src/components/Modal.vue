@@ -9,11 +9,30 @@
           :placeholder="categoryInputPlaceHolder"
           v-model.trim="categoryText"
         />
-        <select v-model="selectedCategory">
+        <!-- <select v-model="selectedCategory">
           <option v-for="note in newNote" :value="note.categoryName">
             {{ note.categoryName }}
           </option>
-        </select>
+        </select> -->
+        <div>
+          <select v-model="selectedItem">
+            <option disabled value="">Select an item</option>
+            <option v-for="item in items" :key="item.id" :value="item.id">
+              {{ item.name }}
+            </option>
+            <option value="new">Create New Item</option>
+          </select>
+
+          <div v-if="selectedItem === 'new'">
+            <input
+              type="text"
+              v-model="newItemName"
+              placeholder="Enter item name"
+            />
+            <button @click="createNewItem">Create</button>
+          </div>
+        </div>
+
         <input
           type="text"
           class="title-input"
@@ -61,7 +80,27 @@ const emit = defineEmits("add-note", "close");
 //     errorMessage.value = "Note must be minimum of 5 characters or more!";
 //     return;
 //   }
+const addCategory = () => {
+  if (
+    newCategoryName.value &&
+    !categories.value.some(
+      (category) => category.name === newCategoryName.value
+    )
+  ) {
+    categories.value.push({ name: newCategoryName.value, cards: [] });
+    newCategoryName.value = "";
+  }
+};
 
+const addCard = () => {
+  const categoryIndex = categories.value.findIndex(
+    (category) => category.name === selectedCategory.value
+  );
+  if (categoryIndex !== -1) {
+    categories.value[categoryIndex].cards.push(newCardName.value);
+    newCardName.value = "";
+  }
+};
 //   const newNote = {
 //     id: Math.floor(Math.random() * 10000000),
 //     title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
@@ -81,18 +120,16 @@ function saveNote() {
     categoryName: categoryText.value,
     cards: [
       {
-        newNote: {
-          id: Math.floor(Math.random() * 10000000),
-          title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
-          text: noteText.value,
-          date: new Date(),
-          backgroundColor: getRandomColor(),
-          btnColor: getBtnColor(),
-        },
+        id: Math.floor(Math.random() * 10000000),
+        title: titleText.value.replace(/\b\w/g, (char) => char.toUpperCase()),
+        text: noteText.value,
+        date: new Date(),
+        backgroundColor: getRandomColor(),
+        btnColor: getBtnColor(),
       },
     ],
   };
-  console.log(newNote);
+  // console.log(newNote.cards.date);
   emit("add-note", newNote);
 }
 
